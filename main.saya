@@ -1,0 +1,273 @@
+extern fn InitWindow(width: i64, height: i64, title: *u8);
+extern fn CloseWindow();
+extern fn WindowShouldClose() -> bool;
+extern fn BeginDrawing();
+extern fn EndDrawing();
+extern fn ClearBackground(color: Color);
+extern fn SetTargetFPS(fps: i64);
+extern fn DrawText(text: *u8, posX: i64, posY: i64, fontSize: i64, color: Color);
+extern fn DrawRectangle(posX: i64, posY: i64, width: i64, height: i64, color: Color);
+extern fn IsKeyPressed(key: i64) -> bool;
+extern fn GetRandomValue(min: i64, max: i64) -> i64;
+
+struct Color {
+    r: u8,
+    g: u8,
+    b: u8,
+    a: u8
+}
+
+const KEY_SPACE: i64 = 32;
+const KEY_RIGHT: i64 = 262;
+const KEY_LEFT: i64 = 263;
+const KEY_DOWN: i64 = 264;
+const KEY_UP: i64 = 265;
+
+const SCREEN_WIDTH: i64 = 1024;
+const SCREEN_HEIGHT: i64 = 1024;
+const GRID_SIZE: i64 = 32;
+const MAX_SNAKE_LENGTH: i64 = 256;
+
+struct Position {
+    x: i64,
+    y: i64
+}
+
+struct Direction {
+    x: i64,
+    y: i64
+}
+
+struct Snake {
+    body: [Position; MAX_SNAKE_LENGTH],
+    head_idx: i64,
+    tail_idx: i64,
+    length: i64,
+    direction: Direction
+}
+
+struct GameState {
+    snake: Snake,
+    food: Position,
+    frame_counter: i64,
+    game_over: bool,
+    allow_move: bool
+}
+
+fn new_snake(start_x: i64, start_y: i64) -> Snake {
+    let body: [Position; MAX_SNAKE_LENGTH] = [Position { x: 0, y: 0 }; MAX_SNAKE_LENGTH];
+    body[0].x = start_x;
+    body[0].y = start_y;
+    Snake {
+        body: body,
+        head_idx: 0,
+        tail_idx: 0,
+        length: 1,
+        direction: Direction {
+            x: 1,
+            y: 0
+        }
+    }
+}
+
+fn move_snake(snake: *Snake) {
+    let head: Position = (*snake).body[(*snake).head_idx];
+    let new_head: Position = Position {
+        x: head.x + (*snake).direction.x * GRID_SIZE,
+        y: head.y + (*snake).direction.y * GRID_SIZE
+    };
+    (*snake).head_idx = ((*snake).head_idx + 1) % MAX_SNAKE_LENGTH;
+    (*snake).body[(*snake).head_idx] = new_head;
+
+    (*snake).tail_idx = ((*snake).tail_idx + 1) % MAX_SNAKE_LENGTH;
+}
+
+fn grow_snake(snake: *Snake) {
+    (*snake).tail_idx = ((*snake).tail_idx - 1 + MAX_SNAKE_LENGTH) % MAX_SNAKE_LENGTH;
+    (*snake).length = (*snake).length + 1;
+}
+
+fn set_direction(snake: *Snake, new_dx: i64, new_dy: i64) {
+    if new_dx == -(*snake).direction.x && new_dy == -(*snake).direction.y {
+        return;
+    }
+    (*snake).direction.x = new_dx;
+    (*snake).direction.y = new_dy;
+}
+
+fn draw_snake(snake: *Snake) {
+    let DARKBLUE: Color = Color { r: 0u8, g: 82u8, b: 172u8, a: 255u8 };
+    let BLUE: Color = Color { r: 0u8, g: 121u8, b: 241u8, a: 255u8 };
+
+    let i: i64 = 0;
+    while i < (*snake).length {
+        let idx: i64 = ((*snake).tail_idx + i) % MAX_SNAKE_LENGTH;
+
+        let color: Color = if idx == (*snake).head_idx {
+            DARKBLUE
+        } else {
+            BLUE
+        };
+
+        DrawRectangle(
+            (*snake).body[idx].x, 
+            (*snake).body[idx].y, 
+            GRID_SIZE, 
+            GRID_SIZE, 
+            color
+        );
+        i = i + 1;
+    }
+}
+
+fn check_collision(snake: *Snake) -> bool {
+    let head: Position = (*snake).body[(*snake).head_idx];
+    
+    if (head.x < 0 || head.x >= SCREEN_WIDTH || head.y < 0 || head.y >= SCREEN_HEIGHT) {
+        return true;
+    }
+    
+    let i: i64 = 0;
+    while i < (*snake).length - 1 {
+        let idx: i64 = ((*snake).tail_idx + i) % MAX_SNAKE_LENGTH;
+        if (*snake).body[idx].x == head.x && (*snake).body[idx].y == head.y {
+            return true;
+        }
+        i = i + 1;
+    }
+    
+    return false;
+}
+
+fn is_position_on_snake(snake: *Snake, pos: Position) -> bool {
+    let i: i64 = 0;
+    while i < (*snake).length {
+        let idx: i64 = ((*snake).tail_idx + i) % MAX_SNAKE_LENGTH;
+        if (*snake).body[idx].x == pos.x && (*snake).body[idx].y == pos.y {
+            return true;
+        }
+        i = i + 1;
+    }
+    return false;
+}
+
+fn spawn_food(state: *GameState) {
+    while true {
+        (*state).food.x = GetRandomValue(0, SCREEN_WIDTH / GRID_SIZE - 1) * GRID_SIZE;
+        (*state).food.y = GetRandomValue(0, SCREEN_HEIGHT / GRID_SIZE - 1) * GRID_SIZE;
+
+        if !is_position_on_snake(&(*state).snake, (*state).food) {
+            break;
+        }
+    }
+}
+
+fn new_game_state() -> GameState {
+    GameState {
+        snake: new_snake(512, 512),
+        food: Position {
+            x: GetRandomValue(0, SCREEN_WIDTH / GRID_SIZE - 1) * GRID_SIZE,
+            y: GetRandomValue(0, SCREEN_HEIGHT / GRID_SIZE - 1) * GRID_SIZE
+        },
+        frame_counter: 0,
+        game_over: false,
+        allow_move: false
+    }
+}
+
+fn reset_game_state(state: *GameState) {
+    (*state).snake.body[0].x = 512;
+    (*state).snake.body[0].y = 512;
+    (*state).snake.head_idx = 0;
+    (*state).snake.tail_idx = 0;
+    (*state).snake.length = 1;
+    (*state).snake.direction.x = 1;
+    (*state).snake.direction.y = 0;
+
+    spawn_food(state);
+
+    (*state).frame_counter = 0;
+    (*state).game_over = false;
+    (*state).allow_move = false;
+}
+
+fn handle_input(state: *GameState) {
+    if (*state).game_over && IsKeyPressed(KEY_SPACE) {
+        reset_game_state(state);
+        return;
+    }
+
+    if !(*state).game_over && (*state).allow_move {
+        if IsKeyPressed(KEY_RIGHT) {
+            set_direction(&(*state).snake, 1, 0);
+            (*state).allow_move = false;
+        }
+        if IsKeyPressed(KEY_LEFT) {
+            set_direction(&(*state).snake, -1, 0);
+            (*state).allow_move = false;
+        }
+        if IsKeyPressed(KEY_DOWN) {
+            set_direction(&(*state).snake, 0, 1);
+            (*state).allow_move = false;
+        }
+        if IsKeyPressed(KEY_UP) {
+            set_direction(&(*state).snake, 0, -1);
+            (*state).allow_move = false;
+        }
+    }
+}
+
+fn update_game(state: *GameState) {
+    if (*state).game_over {
+        return;
+    }
+
+    if (*state).frame_counter % 10 == 0 {
+        move_snake(&(*state).snake);
+        (*state).allow_move = true;
+
+        if check_collision(&(*state).snake) {
+            (*state).game_over = true;
+            return;
+        }
+
+        let head: Position = (*state).snake.body[(*state).snake.head_idx];
+        if head.x == (*state).food.x && head.y == (*state).food.y {
+            grow_snake(&(*state).snake);
+            spawn_food(state);
+        }
+    }
+
+    (*state).frame_counter = (*state).frame_counter + 1;
+}
+
+fn render(state: *GameState) {
+    let RAYWHITE: Color = Color { r: 245u8, g: 245u8, b: 245u8, a: 255u8 };
+    let RED: Color = Color { r: 230u8, g: 41u8, b: 55u8, a: 255u8 };
+
+    BeginDrawing();
+    ClearBackground(RAYWHITE);
+    DrawRectangle((*state).food.x, (*state).food.y, GRID_SIZE, GRID_SIZE, RED);
+    draw_snake(&(*state).snake);
+
+    if (*state).game_over {
+        DrawText(c"GAME OVER!", 330, 470, 64, RED);
+    }
+
+    EndDrawing();
+}
+
+fn main() {
+    let state: GameState = new_game_state();
+
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, c"snake");
+    SetTargetFPS(60);
+
+    while !WindowShouldClose() {
+        handle_input(&state);
+        update_game(&state);
+        render(&state);
+    }
+
+    CloseWindow();
+}
