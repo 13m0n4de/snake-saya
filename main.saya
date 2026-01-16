@@ -14,7 +14,7 @@ struct Color {
     r: u8,
     g: u8,
     b: u8,
-    a: u8
+    a: u8,
 }
 
 const KEY_SPACE: i64 = 32;
@@ -30,12 +30,12 @@ const MAX_SNAKE_LENGTH: i64 = 256;
 
 struct Position {
     x: i64,
-    y: i64
+    y: i64,
 }
 
 struct Direction {
     x: i64,
-    y: i64
+    y: i64,
 }
 
 struct Snake {
@@ -43,7 +43,7 @@ struct Snake {
     head_idx: i64,
     tail_idx: i64,
     length: i64,
-    direction: Direction
+    direction: Direction,
 }
 
 struct GameState {
@@ -51,7 +51,7 @@ struct GameState {
     food: Position,
     frame_counter: i64,
     game_over: bool,
-    allow_move: bool
+    allow_move: bool,
 }
 
 fn new_snake(start_x: i64, start_y: i64) -> Snake {
@@ -257,7 +257,7 @@ fn render(state: *GameState) {
     EndDrawing();
 }
 
-fn main() {
+pub fn main() {
     let state: GameState = new_game_state();
 
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, c"snake");
