@@ -1,0 +1,1286 @@
+pub const LIGHTGRAY : Color = Color { r: 200u8, g: 200u8, b: 200u8, a: 255u8 };
+pub const GRAY      : Color = Color { r: 130u8, g: 130u8, b: 130u8, a: 255u8 };
+pub const DARKGRAY  : Color = Color { r:  80u8, g:  80u8, b:  80u8, a: 255u8 };
+pub const YELLOW    : Color = Color { r: 253u8, g: 249u8, b:   0u8, a: 255u8 };
+pub const GOLD      : Color = Color { r: 255u8, g: 203u8, b:   0u8, a: 255u8 };
+pub const ORANGE    : Color = Color { r: 255u8, g: 161u8, b:   0u8, a: 255u8 };
+pub const PINK      : Color = Color { r: 255u8, g: 109u8, b: 194u8, a: 255u8 };
+pub const RED       : Color = Color { r: 230u8, g:  41u8, b:  55u8, a: 255u8 };
+pub const MAROON    : Color = Color { r: 190u8, g:  33u8, b:  55u8, a: 255u8 };
+pub const GREEN     : Color = Color { r:   0u8, g: 228u8, b:  48u8, a: 255u8 };
+pub const LIME      : Color = Color { r:   0u8, g: 158u8, b:  47u8, a: 255u8 };
+pub const DARKGREEN : Color = Color { r:   0u8, g: 117u8, b:  44u8, a: 255u8 };
+pub const SKYBLUE   : Color = Color { r: 102u8, g: 191u8, b: 255u8, a: 255u8 };
+pub const BLUE      : Color = Color { r:   0u8, g: 121u8, b: 241u8, a: 255u8 };
+pub const DARKBLUE  : Color = Color { r:   0u8, g:  82u8, b: 172u8, a: 255u8 };
+pub const PURPLE    : Color = Color { r: 200u8, g: 122u8, b: 255u8, a: 255u8 };
+pub const VIOLET    : Color = Color { r: 135u8, g:  60u8, b: 190u8, a: 255u8 };
+pub const DARKPURPLE: Color = Color { r: 112u8, g:  31u8, b: 126u8, a: 255u8 };
+pub const BEIGE     : Color = Color { r: 211u8, g: 176u8, b: 131u8, a: 255u8 };
+pub const BROWN     : Color = Color { r: 127u8, g: 106u8, b:  79u8, a: 255u8 };
+pub const DARKBROWN : Color = Color { r:  76u8, g:  63u8, b:  47u8, a: 255u8 };
+
+pub const WHITE     : Color = Color { r: 255u8, g: 255u8, b: 255u8, a: 255u8 };
+pub const BLACK     : Color = Color { r:   0u8, g:   0u8, b:   0u8, a: 255u8 };
+pub const BLANK     : Color = Color { r:   0u8, g:   0u8, b:   0u8, a:   0u8 };
+pub const MAGENTA   : Color = Color { r: 255u8, g:   0u8, b: 255u8, a: 255u8 };
+pub const RAYWHITE  : Color = Color { r: 245u8, g: 245u8, b: 245u8, a: 255u8 };
+
+pub type CubemapLayout = i32;
+pub const CubemapLayout_CUBEMAP_LAYOUT_CROSS_FOUR_BY_THREE: CubemapLayout = 4i32;
+pub const CubemapLayout_CUBEMAP_LAYOUT_CROSS_THREE_BY_FOUR: CubemapLayout = 3i32;
+pub const CubemapLayout_CUBEMAP_LAYOUT_AUTO_DETECT: CubemapLayout = 0i32;
+pub const CubemapLayout_CUBEMAP_LAYOUT_LINE_HORIZONTAL: CubemapLayout = 2i32;
+pub const CubemapLayout_CUBEMAP_LAYOUT_LINE_VERTICAL: CubemapLayout = 1i32;
+
+pub struct AutomationEventList {
+    capacity: u32,
+    count: u32,
+    events: *AutomationEvent,
+}
+
+pub type CameraMode = i32;
+pub const CameraMode_CAMERA_FIRST_PERSON: CameraMode = 3i32;
+pub const CameraMode_CAMERA_FREE: CameraMode = 1i32;
+pub const CameraMode_CAMERA_ORBITAL: CameraMode = 2i32;
+pub const CameraMode_CAMERA_CUSTOM: CameraMode = 0i32;
+pub const CameraMode_CAMERA_THIRD_PERSON: CameraMode = 4i32;
+
+pub type Gesture = i32;
+pub const Gesture_GESTURE_TAP: Gesture = 1i32;
+pub const Gesture_GESTURE_NONE: Gesture = 0i32;
+pub const Gesture_GESTURE_DOUBLETAP: Gesture = 2i32;
+pub const Gesture_GESTURE_SWIPE_LEFT: Gesture = 32i32;
+pub const Gesture_GESTURE_PINCH_IN: Gesture = 256i32;
+pub const Gesture_GESTURE_DRAG: Gesture = 8i32;
+pub const Gesture_GESTURE_HOLD: Gesture = 4i32;
+pub const Gesture_GESTURE_PINCH_OUT: Gesture = 512i32;
+pub const Gesture_GESTURE_SWIPE_RIGHT: Gesture = 16i32;
+pub const Gesture_GESTURE_SWIPE_UP: Gesture = 64i32;
+pub const Gesture_GESTURE_SWIPE_DOWN: Gesture = 128i32;
+
+pub struct Material {
+    shader: Shader,
+    maps: *MaterialMap,
+    params: [f32; 4],
+}
+
+pub struct Image {
+    data: *opaque,
+    width: i32,
+    height: i32,
+    mipmaps: i32,
+    format: i32,
+}
+
+pub struct Camera2D {
+    offset: Vector2,
+    target: Vector2,
+    rotation: f32,
+    zoom: f32,
+}
+
+pub struct MaterialMap {
+    texture: TextureCubemap,
+    color: Color,
+    value: f32,
+}
+
+pub type GamepadButton = i32;
+pub const GamepadButton_GAMEPAD_BUTTON_RIGHT_FACE_DOWN: GamepadButton = 7i32;
+pub const GamepadButton_GAMEPAD_BUTTON_MIDDLE: GamepadButton = 14i32;
+pub const GamepadButton_GAMEPAD_BUTTON_RIGHT_TRIGGER_2: GamepadButton = 12i32;
+pub const GamepadButton_GAMEPAD_BUTTON_RIGHT_TRIGGER_1: GamepadButton = 11i32;
+pub const GamepadButton_GAMEPAD_BUTTON_LEFT_FACE_DOWN: GamepadButton = 3i32;
+pub const GamepadButton_GAMEPAD_BUTTON_RIGHT_THUMB: GamepadButton = 17i32;
+pub const GamepadButton_GAMEPAD_BUTTON_LEFT_THUMB: GamepadButton = 16i32;
+pub const GamepadButton_GAMEPAD_BUTTON_RIGHT_FACE_UP: GamepadButton = 5i32;
+pub const GamepadButton_GAMEPAD_BUTTON_MIDDLE_LEFT: GamepadButton = 13i32;
+pub const GamepadButton_GAMEPAD_BUTTON_RIGHT_FACE_LEFT: GamepadButton = 8i32;
+pub const GamepadButton_GAMEPAD_BUTTON_RIGHT_FACE_RIGHT: GamepadButton = 6i32;
+pub const GamepadButton_GAMEPAD_BUTTON_MIDDLE_RIGHT: GamepadButton = 15i32;
+pub const GamepadButton_GAMEPAD_BUTTON_UNKNOWN: GamepadButton = 0i32;
+pub const GamepadButton_GAMEPAD_BUTTON_LEFT_FACE_LEFT: GamepadButton = 4i32;
+pub const GamepadButton_GAMEPAD_BUTTON_LEFT_TRIGGER_2: GamepadButton = 10i32;
+pub const GamepadButton_GAMEPAD_BUTTON_LEFT_TRIGGER_1: GamepadButton = 9i32;
+pub const GamepadButton_GAMEPAD_BUTTON_LEFT_FACE_RIGHT: GamepadButton = 2i32;
+pub const GamepadButton_GAMEPAD_BUTTON_LEFT_FACE_UP: GamepadButton = 1i32;
+
+pub struct VrStereoConfig {
+    projection: [Matrix; 2],
+    viewOffset: [Matrix; 2],
+    leftLensCenter: [f32; 2],
+    rightLensCenter: [f32; 2],
+    leftScreenCenter: [f32; 2],
+    rightScreenCenter: [f32; 2],
+    scale: [f32; 2],
+    scaleIn: [f32; 2],
+}
+
+pub struct ModelAnimation {
+    boneCount: i32,
+    frameCount: i32,
+    bones: *BoneInfo,
+    framePoses: **Transform,
+    name: [i8; 32],
+}
+
+pub type GamepadAxis = i32;
+pub const GamepadAxis_GAMEPAD_AXIS_LEFT_TRIGGER: GamepadAxis = 4i32;
+pub const GamepadAxis_GAMEPAD_AXIS_RIGHT_X: GamepadAxis = 2i32;
+pub const GamepadAxis_GAMEPAD_AXIS_RIGHT_Y: GamepadAxis = 3i32;
+pub const GamepadAxis_GAMEPAD_AXIS_RIGHT_TRIGGER: GamepadAxis = 5i32;
+pub const GamepadAxis_GAMEPAD_AXIS_LEFT_Y: GamepadAxis = 1i32;
+pub const GamepadAxis_GAMEPAD_AXIS_LEFT_X: GamepadAxis = 0i32;
+
+pub type TraceLogLevel = i32;
+pub const TraceLogLevel_LOG_WARNING: TraceLogLevel = 4i32;
+pub const TraceLogLevel_LOG_DEBUG: TraceLogLevel = 2i32;
+pub const TraceLogLevel_LOG_TRACE: TraceLogLevel = 1i32;
+pub const TraceLogLevel_LOG_NONE: TraceLogLevel = 7i32;
+pub const TraceLogLevel_LOG_ALL: TraceLogLevel = 0i32;
+pub const TraceLogLevel_LOG_ERROR: TraceLogLevel = 5i32;
+pub const TraceLogLevel_LOG_INFO: TraceLogLevel = 3i32;
+pub const TraceLogLevel_LOG_FATAL: TraceLogLevel = 6i32;
+
+pub struct Mesh {
+    vertexCount: i32,
+    triangleCount: i32,
+    vertices: *f32,
+    texcoords: *f32,
+    texcoords2: *f32,
+    normals: *f32,
+    tangents: *f32,
+    colors: *u8,
+    indices: *u16,
+    animVertices: *f32,
+    animNormals: *f32,
+    boneIds: *u8,
+    boneWeights: *f32,
+    boneMatrices: *Matrix,
+    boneCount: i32,
+    vaoId: u32,
+    vboId: *u32,
+}
+
+pub type ShaderUniformDataType = i32;
+pub const ShaderUniformDataType_SHADER_UNIFORM_VEC2: ShaderUniformDataType = 1i32;
+pub const ShaderUniformDataType_SHADER_UNIFORM_VEC3: ShaderUniformDataType = 2i32;
+pub const ShaderUniformDataType_SHADER_UNIFORM_VEC4: ShaderUniformDataType = 3i32;
+pub const ShaderUniformDataType_SHADER_UNIFORM_IVEC3: ShaderUniformDataType = 6i32;
+pub const ShaderUniformDataType_SHADER_UNIFORM_IVEC2: ShaderUniformDataType = 5i32;
+pub const ShaderUniformDataType_SHADER_UNIFORM_IVEC4: ShaderUniformDataType = 7i32;
+pub const ShaderUniformDataType_SHADER_UNIFORM_SAMPLER2D: ShaderUniformDataType = 8i32;
+pub const ShaderUniformDataType_SHADER_UNIFORM_FLOAT: ShaderUniformDataType = 0i32;
+pub const ShaderUniformDataType_SHADER_UNIFORM_INT: ShaderUniformDataType = 4i32;
+
+pub struct VrDeviceInfo {
+    hResolution: i32,
+    vResolution: i32,
+    hScreenSize: f32,
+    vScreenSize: f32,
+    eyeToScreenDistance: f32,
+    lensSeparationDistance: f32,
+    interpupillaryDistance: f32,
+    lensDistortionValues: [f32; 4],
+    chromaAbCorrection: [f32; 4],
+}
+
+pub struct __va_elem {
+    gp_offset: u32,
+    fp_offset: u32,
+    overflow_arg_area: *opaque,
+    reg_save_area: *opaque,
+}
+
+pub struct Model {
+    transform: Matrix,
+    meshCount: i32,
+    materialCount: i32,
+    meshes: *Mesh,
+    materials: *Material,
+    meshMaterial: *i32,
+    boneCount: i32,
+    bones: *BoneInfo,
+    bindPose: *Transform,
+}
+
+pub struct Camera3D {
+    position: Vector3,
+    target: Vector3,
+    up: Vector3,
+    fovy: f32,
+    projection: i32,
+}
+
+pub struct BoundingBox {
+    min: Vector3,
+    max: Vector3,
+}
+
+pub struct Vector4 {
+    x: f32,
+    y: f32,
+    z: f32,
+    w: f32,
+}
+
+pub struct Vector2 {
+    x: f32,
+    y: f32,
+}
+
+pub struct Vector3 {
+    x: f32,
+    y: f32,
+    z: f32,
+}
+
+pub type CameraProjection = i32;
+pub const CameraProjection_CAMERA_ORTHOGRAPHIC: CameraProjection = 1i32;
+pub const CameraProjection_CAMERA_PERSPECTIVE: CameraProjection = 0i32;
+
+pub type MouseCursor = i32;
+pub const MouseCursor_MOUSE_CURSOR_ARROW: MouseCursor = 1i32;
+pub const MouseCursor_MOUSE_CURSOR_RESIZE_NESW: MouseCursor = 8i32;
+pub const MouseCursor_MOUSE_CURSOR_DEFAULT: MouseCursor = 0i32;
+pub const MouseCursor_MOUSE_CURSOR_POINTING_HAND: MouseCursor = 4i32;
+pub const MouseCursor_MOUSE_CURSOR_RESIZE_NWSE: MouseCursor = 7i32;
+pub const MouseCursor_MOUSE_CURSOR_RESIZE_ALL: MouseCursor = 9i32;
+pub const MouseCursor_MOUSE_CURSOR_CROSSHAIR: MouseCursor = 3i32;
+pub const MouseCursor_MOUSE_CURSOR_RESIZE_EW: MouseCursor = 5i32;
+pub const MouseCursor_MOUSE_CURSOR_RESIZE_NS: MouseCursor = 6i32;
+pub const MouseCursor_MOUSE_CURSOR_NOT_ALLOWED: MouseCursor = 10i32;
+pub const MouseCursor_MOUSE_CURSOR_IBEAM: MouseCursor = 2i32;
+
+pub struct RayCollision {
+    hit: bool,
+    distance: f32,
+    point: Vector3,
+    normal: Vector3,
+}
+
+pub struct Music {
+    stream: AudioStream,
+    frameCount: u32,
+    looping: bool,
+    ctxType: i32,
+    ctxData: *opaque,
+}
+
+pub type BlendMode = i32;
+pub const BlendMode_BLEND_MULTIPLIED: BlendMode = 2i32;
+pub const BlendMode_BLEND_ALPHA_PREMULTIPLY: BlendMode = 5i32;
+pub const BlendMode_BLEND_CUSTOM_SEPARATE: BlendMode = 7i32;
+pub const BlendMode_BLEND_ADDITIVE: BlendMode = 1i32;
+pub const BlendMode_BLEND_CUSTOM: BlendMode = 6i32;
+pub const BlendMode_BLEND_SUBTRACT_COLORS: BlendMode = 4i32;
+pub const BlendMode_BLEND_ADD_COLORS: BlendMode = 3i32;
+pub const BlendMode_BLEND_ALPHA: BlendMode = 0i32;
+
+pub struct Sound {
+    stream: AudioStream,
+    frameCount: u32,
+}
+
+pub struct Quaternion {
+    x: f32,
+    y: f32,
+    z: f32,
+    w: f32,
+}
+
+pub type SaveFileDataCallback = *fn(*i8, *opaque, i32) -> bool;
+
+pub type __gnuc_va_list = [__va_elem; 1];
+
+pub struct Color {
+    r: u8,
+    g: u8,
+    b: u8,
+    a: u8,
+}
+
+pub type MouseButton = i32;
+pub const MouseButton_MOUSE_BUTTON_MIDDLE: MouseButton = 2i32;
+pub const MouseButton_MOUSE_BUTTON_LEFT: MouseButton = 0i32;
+pub const MouseButton_MOUSE_BUTTON_BACK: MouseButton = 6i32;
+pub const MouseButton_MOUSE_BUTTON_RIGHT: MouseButton = 1i32;
+pub const MouseButton_MOUSE_BUTTON_EXTRA: MouseButton = 4i32;
+pub const MouseButton_MOUSE_BUTTON_FORWARD: MouseButton = 5i32;
+pub const MouseButton_MOUSE_BUTTON_SIDE: MouseButton = 3i32;
+
+pub struct RenderTexture {
+    id: u32,
+    texture: TextureCubemap,
+    depth: TextureCubemap,
+}
+
+pub type TextureWrap = i32;
+pub const TextureWrap_TEXTURE_WRAP_REPEAT: TextureWrap = 0i32;
+pub const TextureWrap_TEXTURE_WRAP_CLAMP: TextureWrap = 1i32;
+pub const TextureWrap_TEXTURE_WRAP_MIRROR_REPEAT: TextureWrap = 2i32;
+pub const TextureWrap_TEXTURE_WRAP_MIRROR_CLAMP: TextureWrap = 3i32;
+
+pub type LoadFileTextCallback = *fn(*i8) -> *i8;
+
+pub struct BoneInfo {
+    name: [i8; 32],
+    parent: i32,
+}
+
+pub type FontType = i32;
+pub const FontType_FONT_BITMAP: FontType = 1i32;
+pub const FontType_FONT_SDF: FontType = 2i32;
+pub const FontType_FONT_DEFAULT: FontType = 0i32;
+
+pub struct RenderTexture2D {
+    id: u32,
+    texture: TextureCubemap,
+    depth: TextureCubemap,
+}
+
+pub type SaveFileTextCallback = *fn(*i8, *i8) -> bool;
+
+pub struct Texture {
+    id: u32,
+    width: i32,
+    height: i32,
+    mipmaps: i32,
+    format: i32,
+}
+
+pub type LoadFileDataCallback = *fn(*i8, *i32) -> *u8;
+
+pub type ConfigFlags = i32;
+pub const ConfigFlags_FLAG_WINDOW_MAXIMIZED: ConfigFlags = 1024i32;
+pub const ConfigFlags_FLAG_WINDOW_ALWAYS_RUN: ConfigFlags = 256i32;
+pub const ConfigFlags_FLAG_WINDOW_HIDDEN: ConfigFlags = 128i32;
+pub const ConfigFlags_FLAG_WINDOW_TOPMOST: ConfigFlags = 4096i32;
+pub const ConfigFlags_FLAG_WINDOW_HIGHDPI: ConfigFlags = 8192i32;
+pub const ConfigFlags_FLAG_WINDOW_MOUSE_PASSTHROUGH: ConfigFlags = 16384i32;
+pub const ConfigFlags_FLAG_MSAA_4X_HINT: ConfigFlags = 32i32;
+pub const ConfigFlags_FLAG_FULLSCREEN_MODE: ConfigFlags = 2i32;
+pub const ConfigFlags_FLAG_BORDERLESS_WINDOWED_MODE: ConfigFlags = 32768i32;
+pub const ConfigFlags_FLAG_WINDOW_UNFOCUSED: ConfigFlags = 2048i32;
+pub const ConfigFlags_FLAG_WINDOW_TRANSPARENT: ConfigFlags = 16i32;
+pub const ConfigFlags_FLAG_VSYNC_HINT: ConfigFlags = 64i32;
+pub const ConfigFlags_FLAG_INTERLACED_HINT: ConfigFlags = 65536i32;
+pub const ConfigFlags_FLAG_WINDOW_RESIZABLE: ConfigFlags = 4i32;
+pub const ConfigFlags_FLAG_WINDOW_UNDECORATED: ConfigFlags = 8i32;
+pub const ConfigFlags_FLAG_WINDOW_MINIMIZED: ConfigFlags = 512i32;
+
+pub struct AudioStream {
+    buffer: *rAudioBuffer,
+    processor: *rAudioProcessor,
+    sampleRate: u32,
+    sampleSize: u32,
+    channels: u32,
+}
+
+pub type TextureFilter = i32;
+pub const TextureFilter_TEXTURE_FILTER_ANISOTROPIC_4X: TextureFilter = 3i32;
+pub const TextureFilter_TEXTURE_FILTER_ANISOTROPIC_16X: TextureFilter = 5i32;
+pub const TextureFilter_TEXTURE_FILTER_BILINEAR: TextureFilter = 1i32;
+pub const TextureFilter_TEXTURE_FILTER_POINT: TextureFilter = 0i32;
+pub const TextureFilter_TEXTURE_FILTER_ANISOTROPIC_8X: TextureFilter = 4i32;
+pub const TextureFilter_TEXTURE_FILTER_TRILINEAR: TextureFilter = 2i32;
+
+pub type AudioCallback = *fn(*opaque, u32) -> ();
+
+pub struct AutomationEvent {
+    frame: u32,
+    type_: u32,
+    params: [i32; 4],
+}
+
+pub struct rAudioBuffer {
+}
+
+pub struct Shader {
+    id: u32,
+    locs: *i32,
+}
+
+pub type NPatchLayout = i32;
+pub const NPatchLayout_NPATCH_NINE_PATCH: NPatchLayout = 0i32;
+pub const NPatchLayout_NPATCH_THREE_PATCH_HORIZONTAL: NPatchLayout = 2i32;
+pub const NPatchLayout_NPATCH_THREE_PATCH_VERTICAL: NPatchLayout = 1i32;
+
+pub struct Wave {
+    frameCount: u32,
+    sampleRate: u32,
+    sampleSize: u32,
+    channels: u32,
+    data: *opaque,
+}
+
+pub struct NPatchInfo {
+    source: Rectangle,
+    left: i32,
+    top: i32,
+    right: i32,
+    bottom: i32,
+    layout: i32,
+}
+
+pub struct Matrix {
+    m0: f32,
+    m4: f32,
+    m8: f32,
+    m12: f32,
+    m1: f32,
+    m5: f32,
+    m9: f32,
+    m13: f32,
+    m2: f32,
+    m6: f32,
+    m10: f32,
+    m14: f32,
+    m3: f32,
+    m7: f32,
+    m11: f32,
+    m15: f32,
+}
+
+pub struct Transform {
+    translation: Vector3,
+    rotation: Quaternion,
+    scale: Vector3,
+}
+
+pub type TraceLogCallback = *fn(i32, *i8, *__va_elem) -> ();
+
+pub struct Rectangle {
+    x: f32,
+    y: f32,
+    width: f32,
+    height: f32,
+}
+
+pub struct Ray {
+    position: Vector3,
+    direction: Vector3,
+}
+
+pub struct FilePathList {
+    capacity: u32,
+    count: u32,
+    paths: **i8,
+}
+
+pub struct Camera {
+    position: Vector3,
+    target: Vector3,
+    up: Vector3,
+    fovy: f32,
+    projection: i32,
+}
+
+pub struct rAudioProcessor {
+}
+
+pub struct Texture2D {
+    id: u32,
+    width: i32,
+    height: i32,
+    mipmaps: i32,
+    format: i32,
+}
+
+pub type KeyboardKey = i32;
+pub const KeyboardKey_KEY_TWO: KeyboardKey = 50i32;
+pub const KeyboardKey_KEY_PAGE_UP: KeyboardKey = 266i32;
+pub const KeyboardKey_KEY_NINE: KeyboardKey = 57i32;
+pub const KeyboardKey_KEY_ENTER: KeyboardKey = 257i32;
+pub const KeyboardKey_KEY_MINUS: KeyboardKey = 45i32;
+pub const KeyboardKey_KEY_SIX: KeyboardKey = 54i32;
+pub const KeyboardKey_KEY_KP_DECIMAL: KeyboardKey = 330i32;
+pub const KeyboardKey_KEY_ZERO: KeyboardKey = 48i32;
+pub const KeyboardKey_KEY_RIGHT: KeyboardKey = 262i32;
+pub const KeyboardKey_KEY_INSERT: KeyboardKey = 260i32;
+pub const KeyboardKey_KEY_SLASH: KeyboardKey = 47i32;
+pub const KeyboardKey_KEY_VOLUME_DOWN: KeyboardKey = 25i32;
+pub const KeyboardKey_KEY_FIVE: KeyboardKey = 53i32;
+pub const KeyboardKey_KEY_RIGHT_ALT: KeyboardKey = 346i32;
+pub const KeyboardKey_KEY_PRINT_SCREEN: KeyboardKey = 283i32;
+pub const KeyboardKey_KEY_UP: KeyboardKey = 265i32;
+pub const KeyboardKey_KEY_RIGHT_BRACKET: KeyboardKey = 93i32;
+pub const KeyboardKey_KEY_NULL: KeyboardKey = 0i32;
+pub const KeyboardKey_KEY_F12: KeyboardKey = 301i32;
+pub const KeyboardKey_KEY_F10: KeyboardKey = 299i32;
+pub const KeyboardKey_KEY_F11: KeyboardKey = 300i32;
+pub const KeyboardKey_KEY_APOSTROPHE: KeyboardKey = 39i32;
+pub const KeyboardKey_KEY_SPACE: KeyboardKey = 32i32;
+pub const KeyboardKey_KEY_PAUSE: KeyboardKey = 284i32;
+pub const KeyboardKey_KEY_SEVEN: KeyboardKey = 55i32;
+pub const KeyboardKey_KEY_KP_DIVIDE: KeyboardKey = 331i32;
+pub const KeyboardKey_KEY_KP_MULTIPLY: KeyboardKey = 332i32;
+pub const KeyboardKey_KEY_DELETE: KeyboardKey = 261i32;
+pub const KeyboardKey_KEY_LEFT: KeyboardKey = 263i32;
+pub const KeyboardKey_KEY_KP_SUBTRACT: KeyboardKey = 333i32;
+pub const KeyboardKey_KEY_KB_MENU: KeyboardKey = 348i32;
+pub const KeyboardKey_KEY_F7: KeyboardKey = 296i32;
+pub const KeyboardKey_KEY_F6: KeyboardKey = 295i32;
+pub const KeyboardKey_KEY_F5: KeyboardKey = 294i32;
+pub const KeyboardKey_KEY_F4: KeyboardKey = 293i32;
+pub const KeyboardKey_KEY_F3: KeyboardKey = 292i32;
+pub const KeyboardKey_KEY_F2: KeyboardKey = 291i32;
+pub const KeyboardKey_KEY_F1: KeyboardKey = 290i32;
+pub const KeyboardKey_KEY_F9: KeyboardKey = 298i32;
+pub const KeyboardKey_KEY_PAGE_DOWN: KeyboardKey = 267i32;
+pub const KeyboardKey_KEY_F8: KeyboardKey = 297i32;
+pub const KeyboardKey_KEY_KP_ADD: KeyboardKey = 334i32;
+pub const KeyboardKey_KEY_SCROLL_LOCK: KeyboardKey = 281i32;
+pub const KeyboardKey_KEY_RIGHT_CONTROL: KeyboardKey = 345i32;
+pub const KeyboardKey_KEY_LEFT_CONTROL: KeyboardKey = 341i32;
+pub const KeyboardKey_KEY_BACKSLASH: KeyboardKey = 92i32;
+pub const KeyboardKey_KEY_LEFT_BRACKET: KeyboardKey = 91i32;
+pub const KeyboardKey_KEY_EIGHT: KeyboardKey = 56i32;
+pub const KeyboardKey_KEY_ESCAPE: KeyboardKey = 256i32;
+pub const KeyboardKey_KEY_THREE: KeyboardKey = 51i32;
+pub const KeyboardKey_KEY_END: KeyboardKey = 269i32;
+pub const KeyboardKey_KEY_LEFT_SHIFT: KeyboardKey = 340i32;
+pub const KeyboardKey_KEY_PERIOD: KeyboardKey = 46i32;
+pub const KeyboardKey_KEY_LEFT_SUPER: KeyboardKey = 343i32;
+pub const KeyboardKey_KEY_KP_EQUAL: KeyboardKey = 336i32;
+pub const KeyboardKey_KEY_SEMICOLON: KeyboardKey = 59i32;
+pub const KeyboardKey_KEY_KP_9: KeyboardKey = 329i32;
+pub const KeyboardKey_KEY_KP_8: KeyboardKey = 328i32;
+pub const KeyboardKey_KEY_KP_5: KeyboardKey = 325i32;
+pub const KeyboardKey_KEY_KP_4: KeyboardKey = 324i32;
+pub const KeyboardKey_KEY_KP_7: KeyboardKey = 327i32;
+pub const KeyboardKey_KEY_KP_6: KeyboardKey = 326i32;
+pub const KeyboardKey_KEY_KP_1: KeyboardKey = 321i32;
+pub const KeyboardKey_KEY_KP_0: KeyboardKey = 320i32;
+pub const KeyboardKey_KEY_KP_3: KeyboardKey = 323i32;
+pub const KeyboardKey_KEY_KP_2: KeyboardKey = 322i32;
+pub const KeyboardKey_KEY_Z: KeyboardKey = 90i32;
+pub const KeyboardKey_KEY_Y: KeyboardKey = 89i32;
+pub const KeyboardKey_KEY_X: KeyboardKey = 88i32;
+pub const KeyboardKey_KEY_FOUR: KeyboardKey = 52i32;
+pub const KeyboardKey_KEY_S: KeyboardKey = 83i32;
+pub const KeyboardKey_KEY_R: KeyboardKey = 82i32;
+pub const KeyboardKey_KEY_Q: KeyboardKey = 81i32;
+pub const KeyboardKey_KEY_P: KeyboardKey = 80i32;
+pub const KeyboardKey_KEY_W: KeyboardKey = 87i32;
+pub const KeyboardKey_KEY_V: KeyboardKey = 86i32;
+pub const KeyboardKey_KEY_U: KeyboardKey = 85i32;
+pub const KeyboardKey_KEY_T: KeyboardKey = 84i32;
+pub const KeyboardKey_KEY_K: KeyboardKey = 75i32;
+pub const KeyboardKey_KEY_J: KeyboardKey = 74i32;
+pub const KeyboardKey_KEY_I: KeyboardKey = 73i32;
+pub const KeyboardKey_KEY_H: KeyboardKey = 72i32;
+pub const KeyboardKey_KEY_O: KeyboardKey = 79i32;
+pub const KeyboardKey_KEY_N: KeyboardKey = 78i32;
+pub const KeyboardKey_KEY_L: KeyboardKey = 76i32;
+pub const KeyboardKey_KEY_C: KeyboardKey = 67i32;
+pub const KeyboardKey_KEY_B: KeyboardKey = 66i32;
+pub const KeyboardKey_KEY_A: KeyboardKey = 65i32;
+pub const KeyboardKey_KEY_M: KeyboardKey = 77i32;
+pub const KeyboardKey_KEY_G: KeyboardKey = 71i32;
+pub const KeyboardKey_KEY_F: KeyboardKey = 70i32;
+pub const KeyboardKey_KEY_E: KeyboardKey = 69i32;
+pub const KeyboardKey_KEY_D: KeyboardKey = 68i32;
+pub const KeyboardKey_KEY_GRAVE: KeyboardKey = 96i32;
+pub const KeyboardKey_KEY_BACK: KeyboardKey = 4i32;
+pub const KeyboardKey_KEY_NUM_LOCK: KeyboardKey = 282i32;
+pub const KeyboardKey_KEY_KP_ENTER: KeyboardKey = 335i32;
+pub const KeyboardKey_KEY_TAB: KeyboardKey = 258i32;
+pub const KeyboardKey_KEY_BACKSPACE: KeyboardKey = 259i32;
+pub const KeyboardKey_KEY_LEFT_ALT: KeyboardKey = 342i32;
+pub const KeyboardKey_KEY_ONE: KeyboardKey = 49i32;
+pub const KeyboardKey_KEY_RIGHT_SHIFT: KeyboardKey = 344i32;
+pub const KeyboardKey_KEY_HOME: KeyboardKey = 268i32;
+pub const KeyboardKey_KEY_EQUAL: KeyboardKey = 61i32;
+pub const KeyboardKey_KEY_CAPS_LOCK: KeyboardKey = 280i32;
+pub const KeyboardKey_KEY_VOLUME_UP: KeyboardKey = 24i32;
+pub const KeyboardKey_KEY_RIGHT_SUPER: KeyboardKey = 347i32;
+pub const KeyboardKey_KEY_COMMA: KeyboardKey = 44i32;
+pub const KeyboardKey_KEY_MENU: KeyboardKey = 5i32;
+pub const KeyboardKey_KEY_DOWN: KeyboardKey = 264i32;
+
+pub type ShaderLocationIndex = i32;
+pub const ShaderLocationIndex_SHADER_LOC_VERTEX_NORMAL: ShaderLocationIndex = 3i32;
+pub const ShaderLocationIndex_SHADER_LOC_MAP_ROUGHNESS: ShaderLocationIndex = 18i32;
+pub const ShaderLocationIndex_SHADER_LOC_MAP_OCCLUSION: ShaderLocationIndex = 19i32;
+pub const ShaderLocationIndex_SHADER_LOC_MAP_IRRADIANCE: ShaderLocationIndex = 23i32;
+pub const ShaderLocationIndex_SHADER_LOC_MAP_CUBEMAP: ShaderLocationIndex = 22i32;
+pub const ShaderLocationIndex_SHADER_LOC_COLOR_SPECULAR: ShaderLocationIndex = 13i32;
+pub const ShaderLocationIndex_SHADER_LOC_VERTEX_BONEWEIGHTS: ShaderLocationIndex = 27i32;
+pub const ShaderLocationIndex_SHADER_LOC_MATRIX_MVP: ShaderLocationIndex = 6i32;
+pub const ShaderLocationIndex_SHADER_LOC_MAP_EMISSION: ShaderLocationIndex = 20i32;
+pub const ShaderLocationIndex_SHADER_LOC_VERTEX_TEXCOORD02: ShaderLocationIndex = 2i32;
+pub const ShaderLocationIndex_SHADER_LOC_VERTEX_TEXCOORD01: ShaderLocationIndex = 1i32;
+pub const ShaderLocationIndex_SHADER_LOC_MATRIX_NORMAL: ShaderLocationIndex = 10i32;
+pub const ShaderLocationIndex_SHADER_LOC_VECTOR_VIEW: ShaderLocationIndex = 11i32;
+pub const ShaderLocationIndex_SHADER_LOC_MAP_METALNESS: ShaderLocationIndex = 16i32;
+pub const ShaderLocationIndex_SHADER_LOC_MAP_BRDF: ShaderLocationIndex = 25i32;
+pub const ShaderLocationIndex_SHADER_LOC_MAP_NORMAL: ShaderLocationIndex = 17i32;
+pub const ShaderLocationIndex_SHADER_LOC_VERTEX_BONEIDS: ShaderLocationIndex = 26i32;
+pub const ShaderLocationIndex_SHADER_LOC_VERTEX_COLOR: ShaderLocationIndex = 5i32;
+pub const ShaderLocationIndex_SHADER_LOC_MATRIX_MODEL: ShaderLocationIndex = 9i32;
+pub const ShaderLocationIndex_SHADER_LOC_MAP_PREFILTER: ShaderLocationIndex = 24i32;
+pub const ShaderLocationIndex_SHADER_LOC_VERTEX_TANGENT: ShaderLocationIndex = 4i32;
+pub const ShaderLocationIndex_SHADER_LOC_MAP_ALBEDO: ShaderLocationIndex = 15i32;
+pub const ShaderLocationIndex_SHADER_LOC_VERTEX_POSITION: ShaderLocationIndex = 0i32;
+pub const ShaderLocationIndex_SHADER_LOC_MATRIX_VIEW: ShaderLocationIndex = 7i32;
+pub const ShaderLocationIndex_SHADER_LOC_MAP_HEIGHT: ShaderLocationIndex = 21i32;
+pub const ShaderLocationIndex_SHADER_LOC_MATRIX_PROJECTION: ShaderLocationIndex = 8i32;
+pub const ShaderLocationIndex_SHADER_LOC_COLOR_AMBIENT: ShaderLocationIndex = 14i32;
+pub const ShaderLocationIndex_SHADER_LOC_COLOR_DIFFUSE: ShaderLocationIndex = 12i32;
+pub const ShaderLocationIndex_SHADER_LOC_BONE_MATRICES: ShaderLocationIndex = 28i32;
+
+pub struct TextureCubemap {
+    id: u32,
+    width: i32,
+    height: i32,
+    mipmaps: i32,
+    format: i32,
+}
+
+pub type ShaderAttributeDataType = i32;
+pub const ShaderAttributeDataType_SHADER_ATTRIB_FLOAT: ShaderAttributeDataType = 0i32;
+pub const ShaderAttributeDataType_SHADER_ATTRIB_VEC4: ShaderAttributeDataType = 3i32;
+pub const ShaderAttributeDataType_SHADER_ATTRIB_VEC2: ShaderAttributeDataType = 1i32;
+pub const ShaderAttributeDataType_SHADER_ATTRIB_VEC3: ShaderAttributeDataType = 2i32;
+
+pub type va_list = [__va_elem; 1];
+
+pub struct GlyphInfo {
+    value: i32,
+    offsetX: i32,
+    offsetY: i32,
+    advanceX: i32,
+    image: Image,
+}
+
+pub type MaterialMapIndex = i32;
+pub const MaterialMapIndex_MATERIAL_MAP_BRDF: MaterialMapIndex = 10i32;
+pub const MaterialMapIndex_MATERIAL_MAP_NORMAL: MaterialMapIndex = 2i32;
+pub const MaterialMapIndex_MATERIAL_MAP_HEIGHT: MaterialMapIndex = 6i32;
+pub const MaterialMapIndex_MATERIAL_MAP_IRRADIANCE: MaterialMapIndex = 8i32;
+pub const MaterialMapIndex_MATERIAL_MAP_EMISSION: MaterialMapIndex = 5i32;
+pub const MaterialMapIndex_MATERIAL_MAP_ALBEDO: MaterialMapIndex = 0i32;
+pub const MaterialMapIndex_MATERIAL_MAP_CUBEMAP: MaterialMapIndex = 7i32;
+pub const MaterialMapIndex_MATERIAL_MAP_ROUGHNESS: MaterialMapIndex = 3i32;
+pub const MaterialMapIndex_MATERIAL_MAP_METALNESS: MaterialMapIndex = 1i32;
+pub const MaterialMapIndex_MATERIAL_MAP_OCCLUSION: MaterialMapIndex = 4i32;
+pub const MaterialMapIndex_MATERIAL_MAP_PREFILTER: MaterialMapIndex = 9i32;
+
+pub struct Font {
+    baseSize: i32,
+    glyphCount: i32,
+    glyphPadding: i32,
+    texture: TextureCubemap,
+    recs: *Rectangle,
+    glyphs: *GlyphInfo,
+}
+
+pub type PixelFormat = i32;
+pub const PixelFormat_PIXELFORMAT_COMPRESSED_PVRT_RGBA: PixelFormat = 22i32;
+pub const PixelFormat_PIXELFORMAT_UNCOMPRESSED_R5G5B5A1: PixelFormat = 5i32;
+pub const PixelFormat_PIXELFORMAT_COMPRESSED_ASTC_8x8_RGBA: PixelFormat = 24i32;
+pub const PixelFormat_PIXELFORMAT_UNCOMPRESSED_R8G8B8A8: PixelFormat = 7i32;
+pub const PixelFormat_PIXELFORMAT_UNCOMPRESSED_R16: PixelFormat = 11i32;
+pub const PixelFormat_PIXELFORMAT_UNCOMPRESSED_R5G6B5: PixelFormat = 3i32;
+pub const PixelFormat_PIXELFORMAT_UNCOMPRESSED_GRAY_ALPHA: PixelFormat = 2i32;
+pub const PixelFormat_PIXELFORMAT_UNCOMPRESSED_R8G8B8: PixelFormat = 4i32;
+pub const PixelFormat_PIXELFORMAT_COMPRESSED_ASTC_4x4_RGBA: PixelFormat = 23i32;
+pub const PixelFormat_PIXELFORMAT_COMPRESSED_ETC2_EAC_RGBA: PixelFormat = 20i32;
+pub const PixelFormat_PIXELFORMAT_COMPRESSED_ETC1_RGB: PixelFormat = 18i32;
+pub const PixelFormat_PIXELFORMAT_UNCOMPRESSED_R16G16B16: PixelFormat = 12i32;
+pub const PixelFormat_PIXELFORMAT_UNCOMPRESSED_GRAYSCALE: PixelFormat = 1i32;
+pub const PixelFormat_PIXELFORMAT_UNCOMPRESSED_R32G32B32: PixelFormat = 9i32;
+pub const PixelFormat_PIXELFORMAT_UNCOMPRESSED_R32G32B32A32: PixelFormat = 10i32;
+pub const PixelFormat_PIXELFORMAT_COMPRESSED_DXT5_RGBA: PixelFormat = 17i32;
+pub const PixelFormat_PIXELFORMAT_UNCOMPRESSED_R32: PixelFormat = 8i32;
+pub const PixelFormat_PIXELFORMAT_COMPRESSED_DXT3_RGBA: PixelFormat = 16i32;
+pub const PixelFormat_PIXELFORMAT_COMPRESSED_DXT1_RGB: PixelFormat = 14i32;
+pub const PixelFormat_PIXELFORMAT_UNCOMPRESSED_R4G4B4A4: PixelFormat = 6i32;
+pub const PixelFormat_PIXELFORMAT_COMPRESSED_DXT1_RGBA: PixelFormat = 15i32;
+pub const PixelFormat_PIXELFORMAT_COMPRESSED_ETC2_RGB: PixelFormat = 19i32;
+pub const PixelFormat_PIXELFORMAT_UNCOMPRESSED_R16G16B16A16: PixelFormat = 13i32;
+pub const PixelFormat_PIXELFORMAT_COMPRESSED_PVRT_RGB: PixelFormat = 21i32;
+
+@symbol("DetachAudioMixedProcessor") pub extern fn DetachAudioMixedProcessor(processor: AudioCallback) -> ();
+@symbol("AttachAudioMixedProcessor") pub extern fn AttachAudioMixedProcessor(processor: AudioCallback) -> ();
+@symbol("DetachAudioStreamProcessor") pub extern fn DetachAudioStreamProcessor(stream: AudioStream, processor: AudioCallback) -> ();
+@symbol("AttachAudioStreamProcessor") pub extern fn AttachAudioStreamProcessor(stream: AudioStream, processor: AudioCallback) -> ();
+@symbol("SetAudioStreamCallback") pub extern fn SetAudioStreamCallback(stream: AudioStream, callback: AudioCallback) -> ();
+@symbol("SetAudioStreamBufferSizeDefault") pub extern fn SetAudioStreamBufferSizeDefault(size: i32) -> ();
+@symbol("SetAudioStreamPan") pub extern fn SetAudioStreamPan(stream: AudioStream, pan: f32) -> ();
+@symbol("SetAudioStreamPitch") pub extern fn SetAudioStreamPitch(stream: AudioStream, pitch: f32) -> ();
+@symbol("SetAudioStreamVolume") pub extern fn SetAudioStreamVolume(stream: AudioStream, volume: f32) -> ();
+@symbol("StopAudioStream") pub extern fn StopAudioStream(stream: AudioStream) -> ();
+@symbol("IsAudioStreamPlaying") pub extern fn IsAudioStreamPlaying(stream: AudioStream) -> bool;
+@symbol("ResumeAudioStream") pub extern fn ResumeAudioStream(stream: AudioStream) -> ();
+@symbol("PauseAudioStream") pub extern fn PauseAudioStream(stream: AudioStream) -> ();
+@symbol("PlayAudioStream") pub extern fn PlayAudioStream(stream: AudioStream) -> ();
+@symbol("IsAudioStreamProcessed") pub extern fn IsAudioStreamProcessed(stream: AudioStream) -> bool;
+@symbol("UpdateAudioStream") pub extern fn UpdateAudioStream(stream: AudioStream, data: *opaque, frameCount: i32) -> ();
+@symbol("UnloadAudioStream") pub extern fn UnloadAudioStream(stream: AudioStream) -> ();
+@symbol("IsAudioStreamValid") pub extern fn IsAudioStreamValid(stream: AudioStream) -> bool;
+@symbol("LoadAudioStream") pub extern fn LoadAudioStream(sampleRate: u32, sampleSize: u32, channels: u32) -> AudioStream;
+@symbol("GetMusicTimePlayed") pub extern fn GetMusicTimePlayed(music: Music) -> f32;
+@symbol("GetMusicTimeLength") pub extern fn GetMusicTimeLength(music: Music) -> f32;
+@symbol("SetMusicPan") pub extern fn SetMusicPan(music: Music, pan: f32) -> ();
+@symbol("SetMusicPitch") pub extern fn SetMusicPitch(music: Music, pitch: f32) -> ();
+@symbol("SetMusicVolume") pub extern fn SetMusicVolume(music: Music, volume: f32) -> ();
+@symbol("SeekMusicStream") pub extern fn SeekMusicStream(music: Music, position: f32) -> ();
+@symbol("ResumeMusicStream") pub extern fn ResumeMusicStream(music: Music) -> ();
+@symbol("PauseMusicStream") pub extern fn PauseMusicStream(music: Music) -> ();
+@symbol("StopMusicStream") pub extern fn StopMusicStream(music: Music) -> ();
+@symbol("UpdateMusicStream") pub extern fn UpdateMusicStream(music: Music) -> ();
+@symbol("IsMusicStreamPlaying") pub extern fn IsMusicStreamPlaying(music: Music) -> bool;
+@symbol("PlayMusicStream") pub extern fn PlayMusicStream(music: Music) -> ();
+@symbol("UnloadMusicStream") pub extern fn UnloadMusicStream(music: Music) -> ();
+@symbol("IsMusicValid") pub extern fn IsMusicValid(music: Music) -> bool;
+@symbol("LoadMusicStreamFromMemory") pub extern fn LoadMusicStreamFromMemory(fileType: *i8, data: *u8, dataSize: i32) -> Music;
+@symbol("LoadMusicStream") pub extern fn LoadMusicStream(fileName: *i8) -> Music;
+@symbol("UnloadWaveSamples") pub extern fn UnloadWaveSamples(samples: *f32) -> ();
+@symbol("LoadWaveSamples") pub extern fn LoadWaveSamples(wave: Wave) -> *f32;
+@symbol("WaveFormat") pub extern fn WaveFormat(wave: *Wave, sampleRate: i32, sampleSize: i32, channels: i32) -> ();
+@symbol("WaveCrop") pub extern fn WaveCrop(wave: *Wave, initFrame: i32, finalFrame: i32) -> ();
+@symbol("WaveCopy") pub extern fn WaveCopy(wave: Wave) -> Wave;
+@symbol("SetSoundPan") pub extern fn SetSoundPan(sound: Sound, pan: f32) -> ();
+@symbol("SetSoundPitch") pub extern fn SetSoundPitch(sound: Sound, pitch: f32) -> ();
+@symbol("SetSoundVolume") pub extern fn SetSoundVolume(sound: Sound, volume: f32) -> ();
+@symbol("IsSoundPlaying") pub extern fn IsSoundPlaying(sound: Sound) -> bool;
+@symbol("ResumeSound") pub extern fn ResumeSound(sound: Sound) -> ();
+@symbol("PauseSound") pub extern fn PauseSound(sound: Sound) -> ();
+@symbol("StopSound") pub extern fn StopSound(sound: Sound) -> ();
+@symbol("PlaySound") pub extern fn PlaySound(sound: Sound) -> ();
+@symbol("ExportWaveAsCode") pub extern fn ExportWaveAsCode(wave: Wave, fileName: *i8) -> bool;
+@symbol("ExportWave") pub extern fn ExportWave(wave: Wave, fileName: *i8) -> bool;
+@symbol("UnloadSoundAlias") pub extern fn UnloadSoundAlias(alias: Sound) -> ();
+@symbol("UnloadSound") pub extern fn UnloadSound(sound: Sound) -> ();
+@symbol("UnloadWave") pub extern fn UnloadWave(wave: Wave) -> ();
+@symbol("UpdateSound") pub extern fn UpdateSound(sound: Sound, data: *opaque, sampleCount: i32) -> ();
+@symbol("IsSoundValid") pub extern fn IsSoundValid(sound: Sound) -> bool;
+@symbol("LoadSoundAlias") pub extern fn LoadSoundAlias(source: Sound) -> Sound;
+@symbol("LoadSoundFromWave") pub extern fn LoadSoundFromWave(wave: Wave) -> Sound;
+@symbol("LoadSound") pub extern fn LoadSound(fileName: *i8) -> Sound;
+@symbol("IsWaveValid") pub extern fn IsWaveValid(wave: Wave) -> bool;
+@symbol("LoadWaveFromMemory") pub extern fn LoadWaveFromMemory(fileType: *i8, fileData: *u8, dataSize: i32) -> Wave;
+@symbol("LoadWave") pub extern fn LoadWave(fileName: *i8) -> Wave;
+@symbol("GetMasterVolume") pub extern fn GetMasterVolume() -> f32;
+@symbol("SetMasterVolume") pub extern fn SetMasterVolume(volume: f32) -> ();
+@symbol("IsAudioDeviceReady") pub extern fn IsAudioDeviceReady() -> bool;
+@symbol("CloseAudioDevice") pub extern fn CloseAudioDevice() -> ();
+@symbol("InitAudioDevice") pub extern fn InitAudioDevice() -> ();
+@symbol("GetRayCollisionQuad") pub extern fn GetRayCollisionQuad(ray: Ray, p1: Vector3, p2: Vector3, p3: Vector3, p4: Vector3) -> RayCollision;
+@symbol("GetRayCollisionTriangle") pub extern fn GetRayCollisionTriangle(ray: Ray, p1: Vector3, p2: Vector3, p3: Vector3) -> RayCollision;
+@symbol("GetRayCollisionMesh") pub extern fn GetRayCollisionMesh(ray: Ray, mesh: Mesh, transform: Matrix) -> RayCollision;
+@symbol("GetRayCollisionBox") pub extern fn GetRayCollisionBox(ray: Ray, box: BoundingBox) -> RayCollision;
+@symbol("GetRayCollisionSphere") pub extern fn GetRayCollisionSphere(ray: Ray, center: Vector3, radius: f32) -> RayCollision;
+@symbol("CheckCollisionBoxSphere") pub extern fn CheckCollisionBoxSphere(box: BoundingBox, center: Vector3, radius: f32) -> bool;
+@symbol("CheckCollisionBoxes") pub extern fn CheckCollisionBoxes(box1: BoundingBox, box2: BoundingBox) -> bool;
+@symbol("CheckCollisionSpheres") pub extern fn CheckCollisionSpheres(center1: Vector3, radius1: f32, center2: Vector3, radius2: f32) -> bool;
+@symbol("IsModelAnimationValid") pub extern fn IsModelAnimationValid(model: Model, anim: ModelAnimation) -> bool;
+@symbol("UnloadModelAnimations") pub extern fn UnloadModelAnimations(animations: *ModelAnimation, animCount: i32) -> ();
+@symbol("UnloadModelAnimation") pub extern fn UnloadModelAnimation(anim: ModelAnimation) -> ();
+@symbol("UpdateModelAnimationBones") pub extern fn UpdateModelAnimationBones(model: Model, anim: ModelAnimation, frame: i32) -> ();
+@symbol("UpdateModelAnimation") pub extern fn UpdateModelAnimation(model: Model, anim: ModelAnimation, frame: i32) -> ();
+@symbol("LoadModelAnimations") pub extern fn LoadModelAnimations(fileName: *i8, animCount: *i32) -> *ModelAnimation;
+@symbol("SetModelMeshMaterial") pub extern fn SetModelMeshMaterial(model: *Model, meshId: i32, materialId: i32) -> ();
+@symbol("SetMaterialTexture") pub extern fn SetMaterialTexture(material: *Material, mapType: i32, texture: TextureCubemap) -> ();
+@symbol("UnloadMaterial") pub extern fn UnloadMaterial(material: Material) -> ();
+@symbol("IsMaterialValid") pub extern fn IsMaterialValid(material: Material) -> bool;
+@symbol("LoadMaterialDefault") pub extern fn LoadMaterialDefault() -> Material;
+@symbol("LoadMaterials") pub extern fn LoadMaterials(fileName: *i8, materialCount: *i32) -> *Material;
+@symbol("GenMeshCubicmap") pub extern fn GenMeshCubicmap(cubicmap: Image, cubeSize: Vector3) -> Mesh;
+@symbol("GenMeshHeightmap") pub extern fn GenMeshHeightmap(heightmap: Image, size: Vector3) -> Mesh;
+@symbol("GenMeshKnot") pub extern fn GenMeshKnot(radius: f32, size: f32, radSeg: i32, sides: i32) -> Mesh;
+@symbol("GenMeshTorus") pub extern fn GenMeshTorus(radius: f32, size: f32, radSeg: i32, sides: i32) -> Mesh;
+@symbol("GenMeshCone") pub extern fn GenMeshCone(radius: f32, height: f32, slices: i32) -> Mesh;
+@symbol("GenMeshCylinder") pub extern fn GenMeshCylinder(radius: f32, height: f32, slices: i32) -> Mesh;
+@symbol("GenMeshHemiSphere") pub extern fn GenMeshHemiSphere(radius: f32, rings: i32, slices: i32) -> Mesh;
+@symbol("GenMeshSphere") pub extern fn GenMeshSphere(radius: f32, rings: i32, slices: i32) -> Mesh;
+@symbol("GenMeshCube") pub extern fn GenMeshCube(width: f32, height: f32, length: f32) -> Mesh;
+@symbol("GenMeshPlane") pub extern fn GenMeshPlane(width: f32, length: f32, resX: i32, resZ: i32) -> Mesh;
+@symbol("GenMeshPoly") pub extern fn GenMeshPoly(sides: i32, radius: f32) -> Mesh;
+@symbol("ExportMeshAsCode") pub extern fn ExportMeshAsCode(mesh: Mesh, fileName: *i8) -> bool;
+@symbol("ExportMesh") pub extern fn ExportMesh(mesh: Mesh, fileName: *i8) -> bool;
+@symbol("GenMeshTangents") pub extern fn GenMeshTangents(mesh: *Mesh) -> ();
+@symbol("GetMeshBoundingBox") pub extern fn GetMeshBoundingBox(mesh: Mesh) -> BoundingBox;
+@symbol("DrawMeshInstanced") pub extern fn DrawMeshInstanced(mesh: Mesh, material: Material, transforms: *Matrix, instances: i32) -> ();
+@symbol("DrawMesh") pub extern fn DrawMesh(mesh: Mesh, material: Material, transform: Matrix) -> ();
+@symbol("UnloadMesh") pub extern fn UnloadMesh(mesh: Mesh) -> ();
+@symbol("UpdateMeshBuffer") pub extern fn UpdateMeshBuffer(mesh: Mesh, index: i32, data: *opaque, dataSize: i32, offset: i32) -> ();
+@symbol("UploadMesh") pub extern fn UploadMesh(mesh: *Mesh, dynamic: bool) -> ();
+@symbol("DrawBillboardPro") pub extern fn DrawBillboardPro(camera: Camera, texture: TextureCubemap, source: Rectangle, position: Vector3, up: Vector3, size: Vector2, origin: Vector2, rotation: f32, tint: Color) -> ();
+@symbol("DrawBillboardRec") pub extern fn DrawBillboardRec(camera: Camera, texture: TextureCubemap, source: Rectangle, position: Vector3, size: Vector2, tint: Color) -> ();
+@symbol("DrawBillboard") pub extern fn DrawBillboard(camera: Camera, texture: TextureCubemap, position: Vector3, scale: f32, tint: Color) -> ();
+@symbol("DrawBoundingBox") pub extern fn DrawBoundingBox(box: BoundingBox, color: Color) -> ();
+@symbol("DrawModelPointsEx") pub extern fn DrawModelPointsEx(model: Model, position: Vector3, rotationAxis: Vector3, rotationAngle: f32, scale: Vector3, tint: Color) -> ();
+@symbol("DrawModelPoints") pub extern fn DrawModelPoints(model: Model, position: Vector3, scale: f32, tint: Color) -> ();
+@symbol("DrawModelWiresEx") pub extern fn DrawModelWiresEx(model: Model, position: Vector3, rotationAxis: Vector3, rotationAngle: f32, scale: Vector3, tint: Color) -> ();
+@symbol("DrawModelWires") pub extern fn DrawModelWires(model: Model, position: Vector3, scale: f32, tint: Color) -> ();
+@symbol("DrawModelEx") pub extern fn DrawModelEx(model: Model, position: Vector3, rotationAxis: Vector3, rotationAngle: f32, scale: Vector3, tint: Color) -> ();
+@symbol("DrawModel") pub extern fn DrawModel(model: Model, position: Vector3, scale: f32, tint: Color) -> ();
+@symbol("GetModelBoundingBox") pub extern fn GetModelBoundingBox(model: Model) -> BoundingBox;
+@symbol("UnloadModel") pub extern fn UnloadModel(model: Model) -> ();
+@symbol("IsModelValid") pub extern fn IsModelValid(model: Model) -> bool;
+@symbol("LoadModelFromMesh") pub extern fn LoadModelFromMesh(mesh: Mesh) -> Model;
+@symbol("LoadModel") pub extern fn LoadModel(fileName: *i8) -> Model;
+@symbol("DrawGrid") pub extern fn DrawGrid(slices: i32, spacing: f32) -> ();
+@symbol("DrawRay") pub extern fn DrawRay(ray: Ray, color: Color) -> ();
+@symbol("DrawPlane") pub extern fn DrawPlane(centerPos: Vector3, size: Vector2, color: Color) -> ();
+@symbol("DrawCapsuleWires") pub extern fn DrawCapsuleWires(startPos: Vector3, endPos: Vector3, radius: f32, slices: i32, rings: i32, color: Color) -> ();
+@symbol("DrawCapsule") pub extern fn DrawCapsule(startPos: Vector3, endPos: Vector3, radius: f32, slices: i32, rings: i32, color: Color) -> ();
+@symbol("DrawCylinderWiresEx") pub extern fn DrawCylinderWiresEx(startPos: Vector3, endPos: Vector3, startRadius: f32, endRadius: f32, sides: i32, color: Color) -> ();
+@symbol("DrawCylinderWires") pub extern fn DrawCylinderWires(position: Vector3, radiusTop: f32, radiusBottom: f32, height: f32, slices: i32, color: Color) -> ();
+@symbol("DrawCylinderEx") pub extern fn DrawCylinderEx(startPos: Vector3, endPos: Vector3, startRadius: f32, endRadius: f32, sides: i32, color: Color) -> ();
+@symbol("DrawCylinder") pub extern fn DrawCylinder(position: Vector3, radiusTop: f32, radiusBottom: f32, height: f32, slices: i32, color: Color) -> ();
+@symbol("DrawSphereWires") pub extern fn DrawSphereWires(centerPos: Vector3, radius: f32, rings: i32, slices: i32, color: Color) -> ();
+@symbol("DrawSphereEx") pub extern fn DrawSphereEx(centerPos: Vector3, radius: f32, rings: i32, slices: i32, color: Color) -> ();
+@symbol("DrawSphere") pub extern fn DrawSphere(centerPos: Vector3, radius: f32, color: Color) -> ();
+@symbol("DrawCubeWiresV") pub extern fn DrawCubeWiresV(position: Vector3, size: Vector3, color: Color) -> ();
+@symbol("DrawCubeWires") pub extern fn DrawCubeWires(position: Vector3, width: f32, height: f32, length: f32, color: Color) -> ();
+@symbol("DrawCubeV") pub extern fn DrawCubeV(position: Vector3, size: Vector3, color: Color) -> ();
+@symbol("DrawCube") pub extern fn DrawCube(position: Vector3, width: f32, height: f32, length: f32, color: Color) -> ();
+@symbol("DrawTriangleStrip3D") pub extern fn DrawTriangleStrip3D(points: *Vector3, pointCount: i32, color: Color) -> ();
+@symbol("DrawTriangle3D") pub extern fn DrawTriangle3D(v1: Vector3, v2: Vector3, v3: Vector3, color: Color) -> ();
+@symbol("DrawCircle3D") pub extern fn DrawCircle3D(center: Vector3, radius: f32, rotationAxis: Vector3, rotationAngle: f32, color: Color) -> ();
+@symbol("DrawPoint3D") pub extern fn DrawPoint3D(position: Vector3, color: Color) -> ();
+@symbol("DrawLine3D") pub extern fn DrawLine3D(startPos: Vector3, endPos: Vector3, color: Color) -> ();
+@symbol("TextToFloat") pub extern fn TextToFloat(text: *i8) -> f32;
+@symbol("TextToInteger") pub extern fn TextToInteger(text: *i8) -> i32;
+@symbol("TextToCamel") pub extern fn TextToCamel(text: *i8) -> *i8;
+@symbol("TextToSnake") pub extern fn TextToSnake(text: *i8) -> *i8;
+@symbol("TextToPascal") pub extern fn TextToPascal(text: *i8) -> *i8;
+@symbol("TextToLower") pub extern fn TextToLower(text: *i8) -> *i8;
+@symbol("TextToUpper") pub extern fn TextToUpper(text: *i8) -> *i8;
+@symbol("TextFindIndex") pub extern fn TextFindIndex(text: *i8, find: *i8) -> i32;
+@symbol("TextAppend") pub extern fn TextAppend(text: *i8, append: *i8, position: *i32) -> ();
+@symbol("TextSplit") pub extern fn TextSplit(text: *i8, delimiter: i8, count: *i32) -> **i8;
+@symbol("TextJoin") pub extern fn TextJoin(textList: **i8, count: i32, delimiter: *i8) -> *i8;
+@symbol("TextInsert") pub extern fn TextInsert(text: *i8, insert: *i8, position: i32) -> *i8;
+@symbol("TextReplace") pub extern fn TextReplace(text: *i8, replace: *i8, by: *i8) -> *i8;
+@symbol("TextSubtext") pub extern fn TextSubtext(text: *i8, position: i32, length: i32) -> *i8;
+@symbol("TextFormat") pub extern fn TextFormat(text: *i8) -> *i8;
+@symbol("TextLength") pub extern fn TextLength(text: *i8) -> u32;
+@symbol("TextIsEqual") pub extern fn TextIsEqual(text1: *i8, text2: *i8) -> bool;
+@symbol("TextCopy") pub extern fn TextCopy(dst: *i8, src: *i8) -> i32;
+@symbol("CodepointToUTF8") pub extern fn CodepointToUTF8(codepoint: i32, utf8Size: *i32) -> *i8;
+@symbol("GetCodepointPrevious") pub extern fn GetCodepointPrevious(text: *i8, codepointSize: *i32) -> i32;
+@symbol("GetCodepointNext") pub extern fn GetCodepointNext(text: *i8, codepointSize: *i32) -> i32;
+@symbol("GetCodepoint") pub extern fn GetCodepoint(text: *i8, codepointSize: *i32) -> i32;
+@symbol("GetCodepointCount") pub extern fn GetCodepointCount(text: *i8) -> i32;
+@symbol("UnloadCodepoints") pub extern fn UnloadCodepoints(codepoints: *i32) -> ();
+@symbol("LoadCodepoints") pub extern fn LoadCodepoints(text: *i8, count: *i32) -> *i32;
+@symbol("UnloadUTF8") pub extern fn UnloadUTF8(text: *i8) -> ();
+@symbol("LoadUTF8") pub extern fn LoadUTF8(codepoints: *i32, length: i32) -> *i8;
+@symbol("GetGlyphAtlasRec") pub extern fn GetGlyphAtlasRec(font: Font, codepoint: i32) -> Rectangle;
+@symbol("GetGlyphInfo") pub extern fn GetGlyphInfo(font: Font, codepoint: i32) -> GlyphInfo;
+@symbol("GetGlyphIndex") pub extern fn GetGlyphIndex(font: Font, codepoint: i32) -> i32;
+@symbol("MeasureTextEx") pub extern fn MeasureTextEx(font: Font, text: *i8, fontSize: f32, spacing: f32) -> Vector2;
+@symbol("MeasureText") pub extern fn MeasureText(text: *i8, fontSize: i32) -> i32;
+@symbol("SetTextLineSpacing") pub extern fn SetTextLineSpacing(spacing: i32) -> ();
+@symbol("DrawTextCodepoints") pub extern fn DrawTextCodepoints(font: Font, codepoints: *i32, codepointCount: i32, position: Vector2, fontSize: f32, spacing: f32, tint: Color) -> ();
+@symbol("DrawTextCodepoint") pub extern fn DrawTextCodepoint(font: Font, codepoint: i32, position: Vector2, fontSize: f32, tint: Color) -> ();
+@symbol("DrawTextPro") pub extern fn DrawTextPro(font: Font, text: *i8, position: Vector2, origin: Vector2, rotation: f32, fontSize: f32, spacing: f32, tint: Color) -> ();
+@symbol("DrawTextEx") pub extern fn DrawTextEx(font: Font, text: *i8, position: Vector2, fontSize: f32, spacing: f32, tint: Color) -> ();
+@symbol("DrawText") pub extern fn DrawText(text: *i8, posX: i32, posY: i32, fontSize: i32, color: Color) -> ();
+@symbol("DrawFPS") pub extern fn DrawFPS(posX: i32, posY: i32) -> ();
+@symbol("ExportFontAsCode") pub extern fn ExportFontAsCode(font: Font, fileName: *i8) -> bool;
+@symbol("UnloadFont") pub extern fn UnloadFont(font: Font) -> ();
+@symbol("UnloadFontData") pub extern fn UnloadFontData(glyphs: *GlyphInfo, glyphCount: i32) -> ();
+@symbol("GenImageFontAtlas") pub extern fn GenImageFontAtlas(glyphs: *GlyphInfo, glyphRecs: **Rectangle, glyphCount: i32, fontSize: i32, padding: i32, packMethod: i32) -> Image;
+@symbol("LoadFontData") pub extern fn LoadFontData(fileData: *u8, dataSize: i32, fontSize: i32, codepoints: *i32, codepointCount: i32, type_: i32) -> *GlyphInfo;
+@symbol("IsFontValid") pub extern fn IsFontValid(font: Font) -> bool;
+@symbol("LoadFontFromMemory") pub extern fn LoadFontFromMemory(fileType: *i8, fileData: *u8, dataSize: i32, fontSize: i32, codepoints: *i32, codepointCount: i32) -> Font;
+@symbol("LoadFontFromImage") pub extern fn LoadFontFromImage(image: Image, key: Color, firstChar: i32) -> Font;
+@symbol("LoadFontEx") pub extern fn LoadFontEx(fileName: *i8, fontSize: i32, codepoints: *i32, codepointCount: i32) -> Font;
+@symbol("LoadFont") pub extern fn LoadFont(fileName: *i8) -> Font;
+@symbol("GetFontDefault") pub extern fn GetFontDefault() -> Font;
+@symbol("GetPixelDataSize") pub extern fn GetPixelDataSize(width: i32, height: i32, format: i32) -> i32;
+@symbol("SetPixelColor") pub extern fn SetPixelColor(dstPtr: *opaque, color: Color, format: i32) -> ();
+@symbol("GetPixelColor") pub extern fn GetPixelColor(srcPtr: *opaque, format: i32) -> Color;
+@symbol("GetColor") pub extern fn GetColor(hexValue: u32) -> Color;
+@symbol("ColorLerp") pub extern fn ColorLerp(color1: Color, color2: Color, factor: f32) -> Color;
+@symbol("ColorAlphaBlend") pub extern fn ColorAlphaBlend(dst: Color, src: Color, tint: Color) -> Color;
+@symbol("ColorAlpha") pub extern fn ColorAlpha(color: Color, alpha: f32) -> Color;
+@symbol("ColorContrast") pub extern fn ColorContrast(color: Color, contrast: f32) -> Color;
+@symbol("ColorBrightness") pub extern fn ColorBrightness(color: Color, factor: f32) -> Color;
+@symbol("ColorTint") pub extern fn ColorTint(color: Color, tint: Color) -> Color;
+@symbol("ColorFromHSV") pub extern fn ColorFromHSV(hue: f32, saturation: f32, value: f32) -> Color;
+@symbol("ColorToHSV") pub extern fn ColorToHSV(color: Color) -> Vector3;
+@symbol("ColorFromNormalized") pub extern fn ColorFromNormalized(normalized: Quaternion) -> Color;
+@symbol("ColorNormalize") pub extern fn ColorNormalize(color: Color) -> Quaternion;
+@symbol("ColorToInt") pub extern fn ColorToInt(color: Color) -> i32;
+@symbol("Fade") pub extern fn Fade(color: Color, alpha: f32) -> Color;
+@symbol("ColorIsEqual") pub extern fn ColorIsEqual(col1: Color, col2: Color) -> bool;
+@symbol("DrawTextureNPatch") pub extern fn DrawTextureNPatch(texture: TextureCubemap, nPatchInfo: NPatchInfo, dest: Rectangle, origin: Vector2, rotation: f32, tint: Color) -> ();
+@symbol("DrawTexturePro") pub extern fn DrawTexturePro(texture: TextureCubemap, source: Rectangle, dest: Rectangle, origin: Vector2, rotation: f32, tint: Color) -> ();
+@symbol("DrawTextureRec") pub extern fn DrawTextureRec(texture: TextureCubemap, source: Rectangle, position: Vector2, tint: Color) -> ();
+@symbol("DrawTextureEx") pub extern fn DrawTextureEx(texture: TextureCubemap, position: Vector2, rotation: f32, scale: f32, tint: Color) -> ();
+@symbol("DrawTextureV") pub extern fn DrawTextureV(texture: TextureCubemap, position: Vector2, tint: Color) -> ();
+@symbol("DrawTexture") pub extern fn DrawTexture(texture: TextureCubemap, posX: i32, posY: i32, tint: Color) -> ();
+@symbol("SetTextureWrap") pub extern fn SetTextureWrap(texture: TextureCubemap, wrap: i32) -> ();
+@symbol("SetTextureFilter") pub extern fn SetTextureFilter(texture: TextureCubemap, filter: i32) -> ();
+@symbol("GenTextureMipmaps") pub extern fn GenTextureMipmaps(texture: *TextureCubemap) -> ();
+@symbol("UpdateTextureRec") pub extern fn UpdateTextureRec(texture: TextureCubemap, rec: Rectangle, pixels: *opaque) -> ();
+@symbol("UpdateTexture") pub extern fn UpdateTexture(texture: TextureCubemap, pixels: *opaque) -> ();
+@symbol("UnloadRenderTexture") pub extern fn UnloadRenderTexture(target: RenderTexture2D) -> ();
+@symbol("IsRenderTextureValid") pub extern fn IsRenderTextureValid(target: RenderTexture2D) -> bool;
+@symbol("UnloadTexture") pub extern fn UnloadTexture(texture: TextureCubemap) -> ();
+@symbol("IsTextureValid") pub extern fn IsTextureValid(texture: TextureCubemap) -> bool;
+@symbol("LoadRenderTexture") pub extern fn LoadRenderTexture(width: i32, height: i32) -> RenderTexture2D;
+@symbol("LoadTextureCubemap") pub extern fn LoadTextureCubemap(image: Image, layout: i32) -> TextureCubemap;
+@symbol("LoadTextureFromImage") pub extern fn LoadTextureFromImage(image: Image) -> TextureCubemap;
+@symbol("LoadTexture") pub extern fn LoadTexture(fileName: *i8) -> TextureCubemap;
+@symbol("ImageDrawTextEx") pub extern fn ImageDrawTextEx(dst: *Image, font: Font, text: *i8, position: Vector2, fontSize: f32, spacing: f32, tint: Color) -> ();
+@symbol("ImageDrawText") pub extern fn ImageDrawText(dst: *Image, text: *i8, posX: i32, posY: i32, fontSize: i32, color: Color) -> ();
+@symbol("ImageDraw") pub extern fn ImageDraw(dst: *Image, src: Image, srcRec: Rectangle, dstRec: Rectangle, tint: Color) -> ();
+@symbol("ImageDrawTriangleStrip") pub extern fn ImageDrawTriangleStrip(dst: *Image, points: *Vector2, pointCount: i32, color: Color) -> ();
+@symbol("ImageDrawTriangleFan") pub extern fn ImageDrawTriangleFan(dst: *Image, points: *Vector2, pointCount: i32, color: Color) -> ();
+@symbol("ImageDrawTriangleLines") pub extern fn ImageDrawTriangleLines(dst: *Image, v1: Vector2, v2: Vector2, v3: Vector2, color: Color) -> ();
+@symbol("ImageDrawTriangleEx") pub extern fn ImageDrawTriangleEx(dst: *Image, v1: Vector2, v2: Vector2, v3: Vector2, c1: Color, c2: Color, c3: Color) -> ();
+@symbol("ImageDrawTriangle") pub extern fn ImageDrawTriangle(dst: *Image, v1: Vector2, v2: Vector2, v3: Vector2, color: Color) -> ();
+@symbol("ImageDrawRectangleLines") pub extern fn ImageDrawRectangleLines(dst: *Image, rec: Rectangle, thick: i32, color: Color) -> ();
+@symbol("ImageDrawRectangleRec") pub extern fn ImageDrawRectangleRec(dst: *Image, rec: Rectangle, color: Color) -> ();
+@symbol("ImageDrawRectangleV") pub extern fn ImageDrawRectangleV(dst: *Image, position: Vector2, size: Vector2, color: Color) -> ();
+@symbol("ImageDrawRectangle") pub extern fn ImageDrawRectangle(dst: *Image, posX: i32, posY: i32, width: i32, height: i32, color: Color) -> ();
+@symbol("ImageDrawCircleLinesV") pub extern fn ImageDrawCircleLinesV(dst: *Image, center: Vector2, radius: i32, color: Color) -> ();
+@symbol("ImageDrawCircleLines") pub extern fn ImageDrawCircleLines(dst: *Image, centerX: i32, centerY: i32, radius: i32, color: Color) -> ();
+@symbol("ImageDrawCircleV") pub extern fn ImageDrawCircleV(dst: *Image, center: Vector2, radius: i32, color: Color) -> ();
+@symbol("ImageDrawCircle") pub extern fn ImageDrawCircle(dst: *Image, centerX: i32, centerY: i32, radius: i32, color: Color) -> ();
+@symbol("ImageDrawLineEx") pub extern fn ImageDrawLineEx(dst: *Image, start: Vector2, end: Vector2, thick: i32, color: Color) -> ();
+@symbol("ImageDrawLineV") pub extern fn ImageDrawLineV(dst: *Image, start: Vector2, end: Vector2, color: Color) -> ();
+@symbol("ImageDrawLine") pub extern fn ImageDrawLine(dst: *Image, startPosX: i32, startPosY: i32, endPosX: i32, endPosY: i32, color: Color) -> ();
+@symbol("ImageDrawPixelV") pub extern fn ImageDrawPixelV(dst: *Image, position: Vector2, color: Color) -> ();
+@symbol("ImageDrawPixel") pub extern fn ImageDrawPixel(dst: *Image, posX: i32, posY: i32, color: Color) -> ();
+@symbol("ImageClearBackground") pub extern fn ImageClearBackground(dst: *Image, color: Color) -> ();
+@symbol("GetImageColor") pub extern fn GetImageColor(image: Image, x: i32, y: i32) -> Color;
+@symbol("GetImageAlphaBorder") pub extern fn GetImageAlphaBorder(image: Image, threshold: f32) -> Rectangle;
+@symbol("UnloadImagePalette") pub extern fn UnloadImagePalette(colors: *Color) -> ();
+@symbol("UnloadImageColors") pub extern fn UnloadImageColors(colors: *Color) -> ();
+@symbol("LoadImagePalette") pub extern fn LoadImagePalette(image: Image, maxPaletteSize: i32, colorCount: *i32) -> *Color;
+@symbol("LoadImageColors") pub extern fn LoadImageColors(image: Image) -> *Color;
+@symbol("ImageColorReplace") pub extern fn ImageColorReplace(image: *Image, color: Color, replace: Color) -> ();
+@symbol("ImageColorBrightness") pub extern fn ImageColorBrightness(image: *Image, brightness: i32) -> ();
+@symbol("ImageColorContrast") pub extern fn ImageColorContrast(image: *Image, contrast: f32) -> ();
+@symbol("ImageColorGrayscale") pub extern fn ImageColorGrayscale(image: *Image) -> ();
+@symbol("ImageColorInvert") pub extern fn ImageColorInvert(image: *Image) -> ();
+@symbol("ImageColorTint") pub extern fn ImageColorTint(image: *Image, color: Color) -> ();
+@symbol("ImageRotateCCW") pub extern fn ImageRotateCCW(image: *Image) -> ();
+@symbol("ImageRotateCW") pub extern fn ImageRotateCW(image: *Image) -> ();
+@symbol("ImageRotate") pub extern fn ImageRotate(image: *Image, degrees: i32) -> ();
+@symbol("ImageFlipHorizontal") pub extern fn ImageFlipHorizontal(image: *Image) -> ();
+@symbol("ImageFlipVertical") pub extern fn ImageFlipVertical(image: *Image) -> ();
+@symbol("ImageDither") pub extern fn ImageDither(image: *Image, rBpp: i32, gBpp: i32, bBpp: i32, aBpp: i32) -> ();
+@symbol("ImageMipmaps") pub extern fn ImageMipmaps(image: *Image) -> ();
+@symbol("ImageResizeCanvas") pub extern fn ImageResizeCanvas(image: *Image, newWidth: i32, newHeight: i32, offsetX: i32, offsetY: i32, fill: Color) -> ();
+@symbol("ImageResizeNN") pub extern fn ImageResizeNN(image: *Image, newWidth: i32, newHeight: i32) -> ();
+@symbol("ImageResize") pub extern fn ImageResize(image: *Image, newWidth: i32, newHeight: i32) -> ();
+@symbol("ImageKernelConvolution") pub extern fn ImageKernelConvolution(image: *Image, kernel: *f32, kernelSize: i32) -> ();
+@symbol("ImageBlurGaussian") pub extern fn ImageBlurGaussian(image: *Image, blurSize: i32) -> ();
+@symbol("ImageAlphaPremultiply") pub extern fn ImageAlphaPremultiply(image: *Image) -> ();
+@symbol("ImageAlphaMask") pub extern fn ImageAlphaMask(image: *Image, alphaMask: Image) -> ();
+@symbol("ImageAlphaClear") pub extern fn ImageAlphaClear(image: *Image, color: Color, threshold: f32) -> ();
+@symbol("ImageAlphaCrop") pub extern fn ImageAlphaCrop(image: *Image, threshold: f32) -> ();
+@symbol("ImageCrop") pub extern fn ImageCrop(image: *Image, crop: Rectangle) -> ();
+@symbol("ImageToPOT") pub extern fn ImageToPOT(image: *Image, fill: Color) -> ();
+@symbol("ImageFormat") pub extern fn ImageFormat(image: *Image, newFormat: i32) -> ();
+@symbol("ImageTextEx") pub extern fn ImageTextEx(font: Font, text: *i8, fontSize: f32, spacing: f32, tint: Color) -> Image;
+@symbol("ImageText") pub extern fn ImageText(text: *i8, fontSize: i32, color: Color) -> Image;
+@symbol("ImageFromChannel") pub extern fn ImageFromChannel(image: Image, selectedChannel: i32) -> Image;
+@symbol("ImageFromImage") pub extern fn ImageFromImage(image: Image, rec: Rectangle) -> Image;
+@symbol("ImageCopy") pub extern fn ImageCopy(image: Image) -> Image;
+@symbol("GenImageText") pub extern fn GenImageText(width: i32, height: i32, text: *i8) -> Image;
+@symbol("GenImageCellular") pub extern fn GenImageCellular(width: i32, height: i32, tileSize: i32) -> Image;
+@symbol("GenImagePerlinNoise") pub extern fn GenImagePerlinNoise(width: i32, height: i32, offsetX: i32, offsetY: i32, scale: f32) -> Image;
+@symbol("GenImageWhiteNoise") pub extern fn GenImageWhiteNoise(width: i32, height: i32, factor: f32) -> Image;
+@symbol("GenImageChecked") pub extern fn GenImageChecked(width: i32, height: i32, checksX: i32, checksY: i32, col1: Color, col2: Color) -> Image;
+@symbol("GenImageGradientSquare") pub extern fn GenImageGradientSquare(width: i32, height: i32, density: f32, inner: Color, outer: Color) -> Image;
+@symbol("GenImageGradientRadial") pub extern fn GenImageGradientRadial(width: i32, height: i32, density: f32, inner: Color, outer: Color) -> Image;
+@symbol("GenImageGradientLinear") pub extern fn GenImageGradientLinear(width: i32, height: i32, direction: i32, start: Color, end: Color) -> Image;
+@symbol("GenImageColor") pub extern fn GenImageColor(width: i32, height: i32, color: Color) -> Image;
+@symbol("ExportImageAsCode") pub extern fn ExportImageAsCode(image: Image, fileName: *i8) -> bool;
+@symbol("ExportImageToMemory") pub extern fn ExportImageToMemory(image: Image, fileType: *i8, fileSize: *i32) -> *u8;
+@symbol("ExportImage") pub extern fn ExportImage(image: Image, fileName: *i8) -> bool;
+@symbol("UnloadImage") pub extern fn UnloadImage(image: Image) -> ();
+@symbol("IsImageValid") pub extern fn IsImageValid(image: Image) -> bool;
+@symbol("LoadImageFromScreen") pub extern fn LoadImageFromScreen() -> Image;
+@symbol("LoadImageFromTexture") pub extern fn LoadImageFromTexture(texture: TextureCubemap) -> Image;
+@symbol("LoadImageFromMemory") pub extern fn LoadImageFromMemory(fileType: *i8, fileData: *u8, dataSize: i32) -> Image;
+@symbol("LoadImageAnimFromMemory") pub extern fn LoadImageAnimFromMemory(fileType: *i8, fileData: *u8, dataSize: i32, frames: *i32) -> Image;
+@symbol("LoadImageAnim") pub extern fn LoadImageAnim(fileName: *i8, frames: *i32) -> Image;
+@symbol("LoadImageRaw") pub extern fn LoadImageRaw(fileName: *i8, width: i32, height: i32, format: i32, headerSize: i32) -> Image;
+@symbol("LoadImage") pub extern fn LoadImage(fileName: *i8) -> Image;
+@symbol("GetCollisionRec") pub extern fn GetCollisionRec(rec1: Rectangle, rec2: Rectangle) -> Rectangle;
+@symbol("CheckCollisionLines") pub extern fn CheckCollisionLines(startPos1: Vector2, endPos1: Vector2, startPos2: Vector2, endPos2: Vector2, collisionPoint: *Vector2) -> bool;
+@symbol("CheckCollisionPointPoly") pub extern fn CheckCollisionPointPoly(point: Vector2, points: *Vector2, pointCount: i32) -> bool;
+@symbol("CheckCollisionPointLine") pub extern fn CheckCollisionPointLine(point: Vector2, p1: Vector2, p2: Vector2, threshold: i32) -> bool;
+@symbol("CheckCollisionPointTriangle") pub extern fn CheckCollisionPointTriangle(point: Vector2, p1: Vector2, p2: Vector2, p3: Vector2) -> bool;
+@symbol("CheckCollisionPointCircle") pub extern fn CheckCollisionPointCircle(point: Vector2, center: Vector2, radius: f32) -> bool;
+@symbol("CheckCollisionPointRec") pub extern fn CheckCollisionPointRec(point: Vector2, rec: Rectangle) -> bool;
+@symbol("CheckCollisionCircleLine") pub extern fn CheckCollisionCircleLine(center: Vector2, radius: f32, p1: Vector2, p2: Vector2) -> bool;
+@symbol("CheckCollisionCircleRec") pub extern fn CheckCollisionCircleRec(center: Vector2, radius: f32, rec: Rectangle) -> bool;
+@symbol("CheckCollisionCircles") pub extern fn CheckCollisionCircles(center1: Vector2, radius1: f32, center2: Vector2, radius2: f32) -> bool;
+@symbol("CheckCollisionRecs") pub extern fn CheckCollisionRecs(rec1: Rectangle, rec2: Rectangle) -> bool;
+@symbol("GetSplinePointBezierCubic") pub extern fn GetSplinePointBezierCubic(p1: Vector2, c2: Vector2, c3: Vector2, p4: Vector2, t: f32) -> Vector2;
+@symbol("GetSplinePointBezierQuad") pub extern fn GetSplinePointBezierQuad(p1: Vector2, c2: Vector2, p3: Vector2, t: f32) -> Vector2;
+@symbol("GetSplinePointCatmullRom") pub extern fn GetSplinePointCatmullRom(p1: Vector2, p2: Vector2, p3: Vector2, p4: Vector2, t: f32) -> Vector2;
+@symbol("GetSplinePointBasis") pub extern fn GetSplinePointBasis(p1: Vector2, p2: Vector2, p3: Vector2, p4: Vector2, t: f32) -> Vector2;
+@symbol("GetSplinePointLinear") pub extern fn GetSplinePointLinear(startPos: Vector2, endPos: Vector2, t: f32) -> Vector2;
+@symbol("DrawSplineSegmentBezierCubic") pub extern fn DrawSplineSegmentBezierCubic(p1: Vector2, c2: Vector2, c3: Vector2, p4: Vector2, thick: f32, color: Color) -> ();
+@symbol("DrawSplineSegmentBezierQuadratic") pub extern fn DrawSplineSegmentBezierQuadratic(p1: Vector2, c2: Vector2, p3: Vector2, thick: f32, color: Color) -> ();
+@symbol("DrawSplineSegmentCatmullRom") pub extern fn DrawSplineSegmentCatmullRom(p1: Vector2, p2: Vector2, p3: Vector2, p4: Vector2, thick: f32, color: Color) -> ();
+@symbol("DrawSplineSegmentBasis") pub extern fn DrawSplineSegmentBasis(p1: Vector2, p2: Vector2, p3: Vector2, p4: Vector2, thick: f32, color: Color) -> ();
+@symbol("DrawSplineSegmentLinear") pub extern fn DrawSplineSegmentLinear(p1: Vector2, p2: Vector2, thick: f32, color: Color) -> ();
+@symbol("DrawSplineBezierCubic") pub extern fn DrawSplineBezierCubic(points: *Vector2, pointCount: i32, thick: f32, color: Color) -> ();
+@symbol("DrawSplineBezierQuadratic") pub extern fn DrawSplineBezierQuadratic(points: *Vector2, pointCount: i32, thick: f32, color: Color) -> ();
+@symbol("DrawSplineCatmullRom") pub extern fn DrawSplineCatmullRom(points: *Vector2, pointCount: i32, thick: f32, color: Color) -> ();
+@symbol("DrawSplineBasis") pub extern fn DrawSplineBasis(points: *Vector2, pointCount: i32, thick: f32, color: Color) -> ();
+@symbol("DrawSplineLinear") pub extern fn DrawSplineLinear(points: *Vector2, pointCount: i32, thick: f32, color: Color) -> ();
+@symbol("DrawPolyLinesEx") pub extern fn DrawPolyLinesEx(center: Vector2, sides: i32, radius: f32, rotation: f32, lineThick: f32, color: Color) -> ();
+@symbol("DrawPolyLines") pub extern fn DrawPolyLines(center: Vector2, sides: i32, radius: f32, rotation: f32, color: Color) -> ();
+@symbol("DrawPoly") pub extern fn DrawPoly(center: Vector2, sides: i32, radius: f32, rotation: f32, color: Color) -> ();
+@symbol("DrawTriangleStrip") pub extern fn DrawTriangleStrip(points: *Vector2, pointCount: i32, color: Color) -> ();
+@symbol("DrawTriangleFan") pub extern fn DrawTriangleFan(points: *Vector2, pointCount: i32, color: Color) -> ();
+@symbol("DrawTriangleLines") pub extern fn DrawTriangleLines(v1: Vector2, v2: Vector2, v3: Vector2, color: Color) -> ();
+@symbol("DrawTriangle") pub extern fn DrawTriangle(v1: Vector2, v2: Vector2, v3: Vector2, color: Color) -> ();
+@symbol("DrawRectangleRoundedLinesEx") pub extern fn DrawRectangleRoundedLinesEx(rec: Rectangle, roundness: f32, segments: i32, lineThick: f32, color: Color) -> ();
+@symbol("DrawRectangleRoundedLines") pub extern fn DrawRectangleRoundedLines(rec: Rectangle, roundness: f32, segments: i32, color: Color) -> ();
+@symbol("DrawRectangleRounded") pub extern fn DrawRectangleRounded(rec: Rectangle, roundness: f32, segments: i32, color: Color) -> ();
+@symbol("DrawRectangleLinesEx") pub extern fn DrawRectangleLinesEx(rec: Rectangle, lineThick: f32, color: Color) -> ();
+@symbol("DrawRectangleLines") pub extern fn DrawRectangleLines(posX: i32, posY: i32, width: i32, height: i32, color: Color) -> ();
+@symbol("DrawRectangleGradientEx") pub extern fn DrawRectangleGradientEx(rec: Rectangle, topLeft: Color, bottomLeft: Color, topRight: Color, bottomRight: Color) -> ();
+@symbol("DrawRectangleGradientH") pub extern fn DrawRectangleGradientH(posX: i32, posY: i32, width: i32, height: i32, left: Color, right: Color) -> ();
+@symbol("DrawRectangleGradientV") pub extern fn DrawRectangleGradientV(posX: i32, posY: i32, width: i32, height: i32, top: Color, bottom: Color) -> ();
+@symbol("DrawRectanglePro") pub extern fn DrawRectanglePro(rec: Rectangle, origin: Vector2, rotation: f32, color: Color) -> ();
+@symbol("DrawRectangleRec") pub extern fn DrawRectangleRec(rec: Rectangle, color: Color) -> ();
+@symbol("DrawRectangleV") pub extern fn DrawRectangleV(position: Vector2, size: Vector2, color: Color) -> ();
+@symbol("DrawRectangle") pub extern fn DrawRectangle(posX: i32, posY: i32, width: i32, height: i32, color: Color) -> ();
+@symbol("DrawRingLines") pub extern fn DrawRingLines(center: Vector2, innerRadius: f32, outerRadius: f32, startAngle: f32, endAngle: f32, segments: i32, color: Color) -> ();
+@symbol("DrawRing") pub extern fn DrawRing(center: Vector2, innerRadius: f32, outerRadius: f32, startAngle: f32, endAngle: f32, segments: i32, color: Color) -> ();
+@symbol("DrawEllipseLines") pub extern fn DrawEllipseLines(centerX: i32, centerY: i32, radiusH: f32, radiusV: f32, color: Color) -> ();
+@symbol("DrawEllipse") pub extern fn DrawEllipse(centerX: i32, centerY: i32, radiusH: f32, radiusV: f32, color: Color) -> ();
+@symbol("DrawCircleLinesV") pub extern fn DrawCircleLinesV(center: Vector2, radius: f32, color: Color) -> ();
+@symbol("DrawCircleLines") pub extern fn DrawCircleLines(centerX: i32, centerY: i32, radius: f32, color: Color) -> ();
+@symbol("DrawCircleV") pub extern fn DrawCircleV(center: Vector2, radius: f32, color: Color) -> ();
+@symbol("DrawCircleGradient") pub extern fn DrawCircleGradient(centerX: i32, centerY: i32, radius: f32, inner: Color, outer: Color) -> ();
+@symbol("DrawCircleSectorLines") pub extern fn DrawCircleSectorLines(center: Vector2, radius: f32, startAngle: f32, endAngle: f32, segments: i32, color: Color) -> ();
+@symbol("DrawCircleSector") pub extern fn DrawCircleSector(center: Vector2, radius: f32, startAngle: f32, endAngle: f32, segments: i32, color: Color) -> ();
+@symbol("DrawCircle") pub extern fn DrawCircle(centerX: i32, centerY: i32, radius: f32, color: Color) -> ();
+@symbol("DrawLineBezier") pub extern fn DrawLineBezier(startPos: Vector2, endPos: Vector2, thick: f32, color: Color) -> ();
+@symbol("DrawLineStrip") pub extern fn DrawLineStrip(points: *Vector2, pointCount: i32, color: Color) -> ();
+@symbol("DrawLineEx") pub extern fn DrawLineEx(startPos: Vector2, endPos: Vector2, thick: f32, color: Color) -> ();
+@symbol("DrawLineV") pub extern fn DrawLineV(startPos: Vector2, endPos: Vector2, color: Color) -> ();
+@symbol("DrawLine") pub extern fn DrawLine(startPosX: i32, startPosY: i32, endPosX: i32, endPosY: i32, color: Color) -> ();
+@symbol("DrawPixelV") pub extern fn DrawPixelV(position: Vector2, color: Color) -> ();
+@symbol("DrawPixel") pub extern fn DrawPixel(posX: i32, posY: i32, color: Color) -> ();
+@symbol("GetShapesTextureRectangle") pub extern fn GetShapesTextureRectangle() -> Rectangle;
+@symbol("GetShapesTexture") pub extern fn GetShapesTexture() -> TextureCubemap;
+@symbol("SetShapesTexture") pub extern fn SetShapesTexture(texture: TextureCubemap, source: Rectangle) -> ();
+@symbol("UpdateCameraPro") pub extern fn UpdateCameraPro(camera: *Camera, movement: Vector3, rotation: Vector3, zoom: f32) -> ();
+@symbol("UpdateCamera") pub extern fn UpdateCamera(camera: *Camera, mode: i32) -> ();
+@symbol("GetGesturePinchAngle") pub extern fn GetGesturePinchAngle() -> f32;
+@symbol("GetGesturePinchVector") pub extern fn GetGesturePinchVector() -> Vector2;
+@symbol("GetGestureDragAngle") pub extern fn GetGestureDragAngle() -> f32;
+@symbol("GetGestureDragVector") pub extern fn GetGestureDragVector() -> Vector2;
+@symbol("GetGestureHoldDuration") pub extern fn GetGestureHoldDuration() -> f32;
+@symbol("GetGestureDetected") pub extern fn GetGestureDetected() -> i32;
+@symbol("IsGestureDetected") pub extern fn IsGestureDetected(gesture: u32) -> bool;
+@symbol("SetGesturesEnabled") pub extern fn SetGesturesEnabled(flags: u32) -> ();
+@symbol("GetTouchPointCount") pub extern fn GetTouchPointCount() -> i32;
+@symbol("GetTouchPointId") pub extern fn GetTouchPointId(index: i32) -> i32;
+@symbol("GetTouchPosition") pub extern fn GetTouchPosition(index: i32) -> Vector2;
+@symbol("GetTouchY") pub extern fn GetTouchY() -> i32;
+@symbol("GetTouchX") pub extern fn GetTouchX() -> i32;
+@symbol("SetMouseCursor") pub extern fn SetMouseCursor(cursor: i32) -> ();
+@symbol("GetMouseWheelMoveV") pub extern fn GetMouseWheelMoveV() -> Vector2;
+@symbol("GetMouseWheelMove") pub extern fn GetMouseWheelMove() -> f32;
+@symbol("SetMouseScale") pub extern fn SetMouseScale(scaleX: f32, scaleY: f32) -> ();
+@symbol("SetMouseOffset") pub extern fn SetMouseOffset(offsetX: i32, offsetY: i32) -> ();
+@symbol("SetMousePosition") pub extern fn SetMousePosition(x: i32, y: i32) -> ();
+@symbol("GetMouseDelta") pub extern fn GetMouseDelta() -> Vector2;
+@symbol("GetMousePosition") pub extern fn GetMousePosition() -> Vector2;
+@symbol("GetMouseY") pub extern fn GetMouseY() -> i32;
+@symbol("GetMouseX") pub extern fn GetMouseX() -> i32;
+@symbol("IsMouseButtonUp") pub extern fn IsMouseButtonUp(button: i32) -> bool;
+@symbol("IsMouseButtonReleased") pub extern fn IsMouseButtonReleased(button: i32) -> bool;
+@symbol("IsMouseButtonDown") pub extern fn IsMouseButtonDown(button: i32) -> bool;
+@symbol("IsMouseButtonPressed") pub extern fn IsMouseButtonPressed(button: i32) -> bool;
+@symbol("SetGamepadVibration") pub extern fn SetGamepadVibration(gamepad: i32, leftMotor: f32, rightMotor: f32, duration: f32) -> ();
+@symbol("SetGamepadMappings") pub extern fn SetGamepadMappings(mappings: *i8) -> i32;
+@symbol("GetGamepadAxisMovement") pub extern fn GetGamepadAxisMovement(gamepad: i32, axis: i32) -> f32;
+@symbol("GetGamepadAxisCount") pub extern fn GetGamepadAxisCount(gamepad: i32) -> i32;
+@symbol("GetGamepadButtonPressed") pub extern fn GetGamepadButtonPressed() -> i32;
+@symbol("IsGamepadButtonUp") pub extern fn IsGamepadButtonUp(gamepad: i32, button: i32) -> bool;
+@symbol("IsGamepadButtonReleased") pub extern fn IsGamepadButtonReleased(gamepad: i32, button: i32) -> bool;
+@symbol("IsGamepadButtonDown") pub extern fn IsGamepadButtonDown(gamepad: i32, button: i32) -> bool;
+@symbol("IsGamepadButtonPressed") pub extern fn IsGamepadButtonPressed(gamepad: i32, button: i32) -> bool;
+@symbol("GetGamepadName") pub extern fn GetGamepadName(gamepad: i32) -> *i8;
+@symbol("IsGamepadAvailable") pub extern fn IsGamepadAvailable(gamepad: i32) -> bool;
+@symbol("SetExitKey") pub extern fn SetExitKey(key: i32) -> ();
+@symbol("GetCharPressed") pub extern fn GetCharPressed() -> i32;
+@symbol("GetKeyPressed") pub extern fn GetKeyPressed() -> i32;
+@symbol("IsKeyUp") pub extern fn IsKeyUp(key: i32) -> bool;
+@symbol("IsKeyReleased") pub extern fn IsKeyReleased(key: i32) -> bool;
+@symbol("IsKeyDown") pub extern fn IsKeyDown(key: i32) -> bool;
+@symbol("IsKeyPressedRepeat") pub extern fn IsKeyPressedRepeat(key: i32) -> bool;
+@symbol("IsKeyPressed") pub extern fn IsKeyPressed(key: i32) -> bool;
+@symbol("PlayAutomationEvent") pub extern fn PlayAutomationEvent(event: AutomationEvent) -> ();
+@symbol("StopAutomationEventRecording") pub extern fn StopAutomationEventRecording() -> ();
+@symbol("StartAutomationEventRecording") pub extern fn StartAutomationEventRecording() -> ();
+@symbol("SetAutomationEventBaseFrame") pub extern fn SetAutomationEventBaseFrame(frame: i32) -> ();
+@symbol("SetAutomationEventList") pub extern fn SetAutomationEventList(list: *AutomationEventList) -> ();
+@symbol("ExportAutomationEventList") pub extern fn ExportAutomationEventList(list: AutomationEventList, fileName: *i8) -> bool;
+@symbol("UnloadAutomationEventList") pub extern fn UnloadAutomationEventList(list: AutomationEventList) -> ();
+@symbol("LoadAutomationEventList") pub extern fn LoadAutomationEventList(fileName: *i8) -> AutomationEventList;
+@symbol("ComputeSHA1") pub extern fn ComputeSHA1(data: *u8, dataSize: i32) -> *u32;
+@symbol("ComputeMD5") pub extern fn ComputeMD5(data: *u8, dataSize: i32) -> *u32;
+@symbol("ComputeCRC32") pub extern fn ComputeCRC32(data: *u8, dataSize: i32) -> u32;
+@symbol("DecodeDataBase64") pub extern fn DecodeDataBase64(data: *u8, outputSize: *i32) -> *u8;
+@symbol("EncodeDataBase64") pub extern fn EncodeDataBase64(data: *u8, dataSize: i32, outputSize: *i32) -> *i8;
+@symbol("DecompressData") pub extern fn DecompressData(compData: *u8, compDataSize: i32, dataSize: *i32) -> *u8;
+@symbol("CompressData") pub extern fn CompressData(data: *u8, dataSize: i32, compDataSize: *i32) -> *u8;
+@symbol("GetFileModTime") pub extern fn GetFileModTime(fileName: *i8) -> i64;
+@symbol("UnloadDroppedFiles") pub extern fn UnloadDroppedFiles(files: FilePathList) -> ();
+@symbol("LoadDroppedFiles") pub extern fn LoadDroppedFiles() -> FilePathList;
+@symbol("IsFileDropped") pub extern fn IsFileDropped() -> bool;
+@symbol("UnloadDirectoryFiles") pub extern fn UnloadDirectoryFiles(files: FilePathList) -> ();
+@symbol("LoadDirectoryFilesEx") pub extern fn LoadDirectoryFilesEx(basePath: *i8, filter: *i8, scanSubdirs: bool) -> FilePathList;
+@symbol("LoadDirectoryFiles") pub extern fn LoadDirectoryFiles(dirPath: *i8) -> FilePathList;
+@symbol("IsFileNameValid") pub extern fn IsFileNameValid(fileName: *i8) -> bool;
+@symbol("IsPathFile") pub extern fn IsPathFile(path: *i8) -> bool;
+@symbol("ChangeDirectory") pub extern fn ChangeDirectory(dir: *i8) -> bool;
+@symbol("MakeDirectory") pub extern fn MakeDirectory(dirPath: *i8) -> i32;
+@symbol("GetApplicationDirectory") pub extern fn GetApplicationDirectory() -> *i8;
+@symbol("GetWorkingDirectory") pub extern fn GetWorkingDirectory() -> *i8;
+@symbol("GetPrevDirectoryPath") pub extern fn GetPrevDirectoryPath(dirPath: *i8) -> *i8;
+@symbol("GetDirectoryPath") pub extern fn GetDirectoryPath(filePath: *i8) -> *i8;
+@symbol("GetFileNameWithoutExt") pub extern fn GetFileNameWithoutExt(filePath: *i8) -> *i8;
+@symbol("GetFileName") pub extern fn GetFileName(filePath: *i8) -> *i8;
+@symbol("GetFileExtension") pub extern fn GetFileExtension(fileName: *i8) -> *i8;
+@symbol("GetFileLength") pub extern fn GetFileLength(fileName: *i8) -> i32;
+@symbol("IsFileExtension") pub extern fn IsFileExtension(fileName: *i8, ext: *i8) -> bool;
+@symbol("DirectoryExists") pub extern fn DirectoryExists(dirPath: *i8) -> bool;
+@symbol("FileExists") pub extern fn FileExists(fileName: *i8) -> bool;
+@symbol("SaveFileText") pub extern fn SaveFileText(fileName: *i8, text: *i8) -> bool;
+@symbol("UnloadFileText") pub extern fn UnloadFileText(text: *i8) -> ();
+@symbol("LoadFileText") pub extern fn LoadFileText(fileName: *i8) -> *i8;
+@symbol("ExportDataAsCode") pub extern fn ExportDataAsCode(data: *u8, dataSize: i32, fileName: *i8) -> bool;
+@symbol("SaveFileData") pub extern fn SaveFileData(fileName: *i8, data: *opaque, dataSize: i32) -> bool;
+@symbol("UnloadFileData") pub extern fn UnloadFileData(data: *u8) -> ();
+@symbol("LoadFileData") pub extern fn LoadFileData(fileName: *i8, dataSize: *i32) -> *u8;
+@symbol("SetSaveFileTextCallback") pub extern fn SetSaveFileTextCallback(callback: SaveFileTextCallback) -> ();
+@symbol("SetLoadFileTextCallback") pub extern fn SetLoadFileTextCallback(callback: LoadFileTextCallback) -> ();
+@symbol("SetSaveFileDataCallback") pub extern fn SetSaveFileDataCallback(callback: SaveFileDataCallback) -> ();
+@symbol("SetLoadFileDataCallback") pub extern fn SetLoadFileDataCallback(callback: LoadFileDataCallback) -> ();
+@symbol("SetTraceLogCallback") pub extern fn SetTraceLogCallback(callback: TraceLogCallback) -> ();
+@symbol("MemFree") pub extern fn MemFree(ptr: *opaque) -> ();
+@symbol("MemRealloc") pub extern fn MemRealloc(ptr: *opaque, size: u32) -> *opaque;
+@symbol("MemAlloc") pub extern fn MemAlloc(size: u32) -> *opaque;
+@symbol("SetTraceLogLevel") pub extern fn SetTraceLogLevel(logLevel: i32) -> ();
+@symbol("TraceLog") pub extern fn TraceLog(logLevel: i32, text: *i8) -> ();
+@symbol("OpenURL") pub extern fn OpenURL(url: *i8) -> ();
+@symbol("SetConfigFlags") pub extern fn SetConfigFlags(flags: u32) -> ();
+@symbol("TakeScreenshot") pub extern fn TakeScreenshot(fileName: *i8) -> ();
+@symbol("UnloadRandomSequence") pub extern fn UnloadRandomSequence(sequence: *i32) -> ();
+@symbol("LoadRandomSequence") pub extern fn LoadRandomSequence(count: u32, min: i32, max: i32) -> *i32;
+@symbol("GetRandomValue") pub extern fn GetRandomValue(min: i32, max: i32) -> i32;
+@symbol("SetRandomSeed") pub extern fn SetRandomSeed(seed: u32) -> ();
+@symbol("WaitTime") pub extern fn WaitTime(seconds: f64) -> ();
+@symbol("PollInputEvents") pub extern fn PollInputEvents() -> ();
+@symbol("SwapScreenBuffer") pub extern fn SwapScreenBuffer() -> ();
+@symbol("GetFPS") pub extern fn GetFPS() -> i32;
+@symbol("GetTime") pub extern fn GetTime() -> f64;
+@symbol("GetFrameTime") pub extern fn GetFrameTime() -> f32;
+@symbol("SetTargetFPS") pub extern fn SetTargetFPS(fps: i32) -> ();
+@symbol("GetCameraMatrix2D") pub extern fn GetCameraMatrix2D(camera: Camera2D) -> Matrix;
+@symbol("GetCameraMatrix") pub extern fn GetCameraMatrix(camera: Camera) -> Matrix;
+@symbol("GetScreenToWorld2D") pub extern fn GetScreenToWorld2D(position: Vector2, camera: Camera2D) -> Vector2;
+@symbol("GetWorldToScreen2D") pub extern fn GetWorldToScreen2D(position: Vector2, camera: Camera2D) -> Vector2;
+@symbol("GetWorldToScreenEx") pub extern fn GetWorldToScreenEx(position: Vector3, camera: Camera, width: i32, height: i32) -> Vector2;
+@symbol("GetWorldToScreen") pub extern fn GetWorldToScreen(position: Vector3, camera: Camera) -> Vector2;
+@symbol("GetScreenToWorldRayEx") pub extern fn GetScreenToWorldRayEx(position: Vector2, camera: Camera, width: i32, height: i32) -> Ray;
+@symbol("GetScreenToWorldRay") pub extern fn GetScreenToWorldRay(position: Vector2, camera: Camera) -> Ray;
+@symbol("UnloadShader") pub extern fn UnloadShader(shader: Shader) -> ();
+@symbol("SetShaderValueTexture") pub extern fn SetShaderValueTexture(shader: Shader, locIndex: i32, texture: TextureCubemap) -> ();
+@symbol("SetShaderValueMatrix") pub extern fn SetShaderValueMatrix(shader: Shader, locIndex: i32, mat: Matrix) -> ();
+@symbol("SetShaderValueV") pub extern fn SetShaderValueV(shader: Shader, locIndex: i32, value: *opaque, uniformType: i32, count: i32) -> ();
+@symbol("SetShaderValue") pub extern fn SetShaderValue(shader: Shader, locIndex: i32, value: *opaque, uniformType: i32) -> ();
+@symbol("GetShaderLocationAttrib") pub extern fn GetShaderLocationAttrib(shader: Shader, attribName: *i8) -> i32;
+@symbol("GetShaderLocation") pub extern fn GetShaderLocation(shader: Shader, uniformName: *i8) -> i32;
+@symbol("IsShaderValid") pub extern fn IsShaderValid(shader: Shader) -> bool;
+@symbol("LoadShaderFromMemory") pub extern fn LoadShaderFromMemory(vsCode: *i8, fsCode: *i8) -> Shader;
+@symbol("LoadShader") pub extern fn LoadShader(vsFileName: *i8, fsFileName: *i8) -> Shader;
+@symbol("UnloadVrStereoConfig") pub extern fn UnloadVrStereoConfig(config: VrStereoConfig) -> ();
+@symbol("LoadVrStereoConfig") pub extern fn LoadVrStereoConfig(device: VrDeviceInfo) -> VrStereoConfig;
+@symbol("EndVrStereoMode") pub extern fn EndVrStereoMode() -> ();
+@symbol("BeginVrStereoMode") pub extern fn BeginVrStereoMode(config: VrStereoConfig) -> ();
+@symbol("EndScissorMode") pub extern fn EndScissorMode() -> ();
+@symbol("BeginScissorMode") pub extern fn BeginScissorMode(x: i32, y: i32, width: i32, height: i32) -> ();
+@symbol("EndBlendMode") pub extern fn EndBlendMode() -> ();
+@symbol("BeginBlendMode") pub extern fn BeginBlendMode(mode: i32) -> ();
+@symbol("EndShaderMode") pub extern fn EndShaderMode() -> ();
+@symbol("BeginShaderMode") pub extern fn BeginShaderMode(shader: Shader) -> ();
+@symbol("EndTextureMode") pub extern fn EndTextureMode() -> ();
+@symbol("BeginTextureMode") pub extern fn BeginTextureMode(target: RenderTexture2D) -> ();
+@symbol("EndMode3D") pub extern fn EndMode3D() -> ();
+@symbol("BeginMode3D") pub extern fn BeginMode3D(camera: Camera) -> ();
+@symbol("EndMode2D") pub extern fn EndMode2D() -> ();
+@symbol("BeginMode2D") pub extern fn BeginMode2D(camera: Camera2D) -> ();
+@symbol("EndDrawing") pub extern fn EndDrawing() -> ();
+@symbol("BeginDrawing") pub extern fn BeginDrawing() -> ();
+@symbol("ClearBackground") pub extern fn ClearBackground(color: Color) -> ();
+@symbol("IsCursorOnScreen") pub extern fn IsCursorOnScreen() -> bool;
+@symbol("DisableCursor") pub extern fn DisableCursor() -> ();
+@symbol("EnableCursor") pub extern fn EnableCursor() -> ();
+@symbol("IsCursorHidden") pub extern fn IsCursorHidden() -> bool;
+@symbol("HideCursor") pub extern fn HideCursor() -> ();
+@symbol("ShowCursor") pub extern fn ShowCursor() -> ();
+@symbol("DisableEventWaiting") pub extern fn DisableEventWaiting() -> ();
+@symbol("EnableEventWaiting") pub extern fn EnableEventWaiting() -> ();
+@symbol("GetClipboardImage") pub extern fn GetClipboardImage() -> Image;
+@symbol("GetClipboardText") pub extern fn GetClipboardText() -> *i8;
+@symbol("SetClipboardText") pub extern fn SetClipboardText(text: *i8) -> ();
+@symbol("GetMonitorName") pub extern fn GetMonitorName(monitor: i32) -> *i8;
+@symbol("GetWindowScaleDPI") pub extern fn GetWindowScaleDPI() -> Vector2;
+@symbol("GetWindowPosition") pub extern fn GetWindowPosition() -> Vector2;
+@symbol("GetMonitorRefreshRate") pub extern fn GetMonitorRefreshRate(monitor: i32) -> i32;
+@symbol("GetMonitorPhysicalHeight") pub extern fn GetMonitorPhysicalHeight(monitor: i32) -> i32;
+@symbol("GetMonitorPhysicalWidth") pub extern fn GetMonitorPhysicalWidth(monitor: i32) -> i32;
+@symbol("GetMonitorHeight") pub extern fn GetMonitorHeight(monitor: i32) -> i32;
+@symbol("GetMonitorWidth") pub extern fn GetMonitorWidth(monitor: i32) -> i32;
+@symbol("GetMonitorPosition") pub extern fn GetMonitorPosition(monitor: i32) -> Vector2;
+@symbol("GetCurrentMonitor") pub extern fn GetCurrentMonitor() -> i32;
+@symbol("GetMonitorCount") pub extern fn GetMonitorCount() -> i32;
+@symbol("GetRenderHeight") pub extern fn GetRenderHeight() -> i32;
+@symbol("GetRenderWidth") pub extern fn GetRenderWidth() -> i32;
+@symbol("GetScreenHeight") pub extern fn GetScreenHeight() -> i32;
+@symbol("GetScreenWidth") pub extern fn GetScreenWidth() -> i32;
+@symbol("GetWindowHandle") pub extern fn GetWindowHandle() -> *opaque;
+@symbol("SetWindowFocused") pub extern fn SetWindowFocused() -> ();
+@symbol("SetWindowOpacity") pub extern fn SetWindowOpacity(opacity: f32) -> ();
+@symbol("SetWindowSize") pub extern fn SetWindowSize(width: i32, height: i32) -> ();
+@symbol("SetWindowMaxSize") pub extern fn SetWindowMaxSize(width: i32, height: i32) -> ();
+@symbol("SetWindowMinSize") pub extern fn SetWindowMinSize(width: i32, height: i32) -> ();
+@symbol("SetWindowMonitor") pub extern fn SetWindowMonitor(monitor: i32) -> ();
+@symbol("SetWindowPosition") pub extern fn SetWindowPosition(x: i32, y: i32) -> ();
+@symbol("SetWindowTitle") pub extern fn SetWindowTitle(title: *i8) -> ();
+@symbol("SetWindowIcons") pub extern fn SetWindowIcons(images: *Image, count: i32) -> ();
+@symbol("SetWindowIcon") pub extern fn SetWindowIcon(image: Image) -> ();
+@symbol("RestoreWindow") pub extern fn RestoreWindow() -> ();
+@symbol("MinimizeWindow") pub extern fn MinimizeWindow() -> ();
+@symbol("MaximizeWindow") pub extern fn MaximizeWindow() -> ();
+@symbol("ToggleBorderlessWindowed") pub extern fn ToggleBorderlessWindowed() -> ();
+@symbol("ToggleFullscreen") pub extern fn ToggleFullscreen() -> ();
+@symbol("ClearWindowState") pub extern fn ClearWindowState(flags: u32) -> ();
+@symbol("SetWindowState") pub extern fn SetWindowState(flags: u32) -> ();
+@symbol("IsWindowState") pub extern fn IsWindowState(flag: u32) -> bool;
+@symbol("IsWindowResized") pub extern fn IsWindowResized() -> bool;
+@symbol("IsWindowFocused") pub extern fn IsWindowFocused() -> bool;
+@symbol("IsWindowMaximized") pub extern fn IsWindowMaximized() -> bool;
+@symbol("IsWindowMinimized") pub extern fn IsWindowMinimized() -> bool;
+@symbol("IsWindowHidden") pub extern fn IsWindowHidden() -> bool;
+@symbol("IsWindowFullscreen") pub extern fn IsWindowFullscreen() -> bool;
+@symbol("IsWindowReady") pub extern fn IsWindowReady() -> bool;
+@symbol("WindowShouldClose") pub extern fn WindowShouldClose() -> bool;
+@symbol("CloseWindow") pub extern fn CloseWindow() -> ();
+@symbol("InitWindow") pub extern fn InitWindow(width: i32, height: i32, title: *i8) -> ();
