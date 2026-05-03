@@ -1,3 +1,2 @@
-out.s
-out.ssa
-snake
+build/
+.env
