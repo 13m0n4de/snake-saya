@@ -2,6 +2,8 @@
 
 A simple [Snake](<https://en.wikipedia.org/wiki/Snake_(video_game_genre)>) game implemented in [Saya](https://github.com/13m0n4de/saya) language.
 
+![snake.gif](./assets/snake.gif)
+
 ## Build
 
 ```bash
