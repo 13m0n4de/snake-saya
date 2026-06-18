@@ -1,8 +1,8 @@
 use raylib;
 
-const SCREEN_WIDTH: i32 = 1024i32;
-const SCREEN_HEIGHT: i32 = 1024i32;
-const GRID_SIZE: i32 = 32i32;
+const SCREEN_WIDTH: i32 = 1024;
+const SCREEN_HEIGHT: i32 = 1024;
+const GRID_SIZE: i32 = 32;
 const MAX_SNAKE_LENGTH: i64 = 256;
 
 struct Position {
@@ -32,7 +32,7 @@ struct GameState {
 }
 
 fn new_snake(start_x: i32, start_y: i32) -> Snake {
-    let body: [Position; MAX_SNAKE_LENGTH] = [Position { x: 0i32, y: 0i32 }; MAX_SNAKE_LENGTH];
+    let body = [Position { x: 0, y: 0 }; MAX_SNAKE_LENGTH];
     body[0].x = start_x;
     body[0].y = start_y;
     Snake {
@@ -41,15 +41,15 @@ fn new_snake(start_x: i32, start_y: i32) -> Snake {
         tail_idx: 0,
         length: 1,
         direction: Direction {
-            x: 1i32,
-            y: 0i32,
+            x: 1,
+            y: 0,
         }
     }
 }
 
 fn move_snake(snake: *Snake) {
-    let head: Position = snake.body[snake.head_idx];
-    let new_head: Position = Position {
+    let head = snake.body[snake.head_idx];
+    let new_head = Position {
         x: head.x + snake.direction.x * GRID_SIZE,
         y: head.y + snake.direction.y * GRID_SIZE
     };
@@ -73,11 +73,11 @@ fn set_direction(snake: *Snake, new_dx: i32, new_dy: i32) {
 }
 
 fn draw_snake(snake: *Snake) {
-    let i: i64 = 0;
+    let i = 0;
     while i < snake.length {
-        let idx: i64 = (snake.tail_idx + i) % MAX_SNAKE_LENGTH;
+        let idx = (snake.tail_idx + i) % MAX_SNAKE_LENGTH;
 
-        let color: raylib::Color = if idx == snake.head_idx {
+        let color = if idx == snake.head_idx {
             raylib::DARKBLUE
         } else {
             raylib::BLUE
@@ -95,15 +95,15 @@ fn draw_snake(snake: *Snake) {
 }
 
 fn check_collision(snake: *Snake) -> bool {
-    let head: Position = snake.body[snake.head_idx];
+    let head = snake.body[snake.head_idx];
     
     if (head.x < 0i32 || head.x >= SCREEN_WIDTH || head.y < 0i32 || head.y >= SCREEN_HEIGHT) {
         return true;
     }
     
-    let i: i64 = 0;
+    let i = 0;
     while i < snake.length - 1 {
-        let idx: i64 = (snake.tail_idx + i) % MAX_SNAKE_LENGTH;
+        let idx = (snake.tail_idx + i) % MAX_SNAKE_LENGTH;
         if snake.body[idx].x == head.x && snake.body[idx].y == head.y {
             return true;
         }
@@ -114,9 +114,9 @@ fn check_collision(snake: *Snake) -> bool {
 }
 
 fn is_position_on_snake(snake: *Snake, pos: Position) -> bool {
-    let i: i64 = 0;
+    let i = 0;
     while i < snake.length {
-        let idx: i64 = (snake.tail_idx + i) % MAX_SNAKE_LENGTH;
+        let idx = (snake.tail_idx + i) % MAX_SNAKE_LENGTH;
         if snake.body[idx].x == pos.x && snake.body[idx].y == pos.y {
             return true;
         }
@@ -127,8 +127,8 @@ fn is_position_on_snake(snake: *Snake, pos: Position) -> bool {
 
 fn spawn_food(state: *GameState) {
     while true {
-        state.food.x = raylib::GetRandomValue(0i32, SCREEN_WIDTH / GRID_SIZE - 1i32) * GRID_SIZE;
-        state.food.y = raylib::GetRandomValue(0i32, SCREEN_HEIGHT / GRID_SIZE - 1i32) * GRID_SIZE;
+        state.food.x = raylib::GetRandomValue(0, SCREEN_WIDTH / GRID_SIZE - 1) * GRID_SIZE;
+        state.food.y = raylib::GetRandomValue(0, SCREEN_HEIGHT / GRID_SIZE - 1) * GRID_SIZE;
 
         if !is_position_on_snake(&state.snake, state.food) {
             break;
@@ -138,10 +138,10 @@ fn spawn_food(state: *GameState) {
 
 fn new_game_state() -> GameState {
     GameState {
-        snake: new_snake(512i32, 512i32),
+        snake: new_snake(512, 512),
         food: Position {
-            x: raylib::GetRandomValue(0i32, SCREEN_WIDTH / GRID_SIZE - 1i32) * GRID_SIZE,
-            y: raylib::GetRandomValue(0i32, SCREEN_HEIGHT / GRID_SIZE - 1i32) * GRID_SIZE
+            x: raylib::GetRandomValue(0, SCREEN_WIDTH / GRID_SIZE - 1) * GRID_SIZE,
+            y: raylib::GetRandomValue(0, SCREEN_HEIGHT / GRID_SIZE - 1) * GRID_SIZE
         },
         frame_counter: 0,
         game_over: false,
@@ -150,13 +150,13 @@ fn new_game_state() -> GameState {
 }
 
 fn reset_game_state(state: *GameState) {
-    state.snake.body[0].x = 512i32;
-    state.snake.body[0].y = 512i32;
+    state.snake.body[0].x = 512;
+    state.snake.body[0].y = 512;
     state.snake.head_idx = 0;
     state.snake.tail_idx = 0;
     state.snake.length = 1;
-    state.snake.direction.x = 1i32;
-    state.snake.direction.y = 0i32;
+    state.snake.direction.x = 1;
+    state.snake.direction.y = 0;
 
     spawn_food(state);
 
@@ -173,19 +173,19 @@ fn handle_input(state: *GameState) {
 
     if !state.game_over && state.allow_move {
         if raylib::IsKeyPressed(raylib::KeyboardKey_KEY_RIGHT) {
-            set_direction(&state.snake, 1i32, 0i32);
+            set_direction(&state.snake, 1, 0);
             state.allow_move = false;
         }
         if raylib::IsKeyPressed(raylib::KeyboardKey_KEY_LEFT) {
-            set_direction(&state.snake, -1i32, 0i32);
+            set_direction(&state.snake, -1, 0);
             state.allow_move = false;
         }
         if raylib::IsKeyPressed(raylib::KeyboardKey_KEY_DOWN) {
-            set_direction(&state.snake, 0i32, 1i32);
+            set_direction(&state.snake, 0, 1);
             state.allow_move = false;
         }
         if raylib::IsKeyPressed(raylib::KeyboardKey_KEY_UP) {
-            set_direction(&state.snake, 0i32, -1i32);
+            set_direction(&state.snake, 0, -1);
             state.allow_move = false;
         }
     }
@@ -205,7 +205,7 @@ fn update_game(state: *GameState) {
             return;
         }
 
-        let head: Position = state.snake.body[state.snake.head_idx];
+        let head = state.snake.body[state.snake.head_idx];
         if head.x == state.food.x && head.y == state.food.y {
             grow_snake(&state.snake);
             spawn_food(state);
@@ -222,17 +222,17 @@ fn render(state: *GameState) {
     draw_snake(&state.snake);
 
     if state.game_over {
-        raylib::DrawText(c"GAME OVER!", 330i32, 470i32, 64i32, raylib::RED);
+        raylib::DrawText(c"GAME OVER!", 330, 470, 64, raylib::RED);
     }
 
     raylib::EndDrawing();
 }
 
 pub fn main() {
-    let state: GameState = new_game_state();
+    let state = new_game_state();
 
     raylib::InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, c"snake");
-    raylib::SetTargetFPS(60i32);
+    raylib::SetTargetFPS(60);
 
     while !raylib::WindowShouldClose() {
         handle_input(&state);
