@@ -386,7 +386,7 @@ pub const TextureFilter_TEXTURE_FILTER_ANISOTROPIC_4X: TextureFilter = 3;
 pub const TextureFilter_TEXTURE_FILTER_ANISOTROPIC_8X: TextureFilter = 4;
 pub const TextureFilter_TEXTURE_FILTER_ANISOTROPIC_16X: TextureFilter = 5;
 
-pub type AudioCallback = *fn(*opaque, u32) -> ();
+pub type AudioCallback = *fn(*opaque, u32);
 
 pub struct AutomationEvent {
     frame: u32,
@@ -449,7 +449,7 @@ pub struct Transform {
     scale: Vector3,
 }
 
-pub type TraceLogCallback = *fn(i32, *i8, *__va_elem) -> ();
+pub type TraceLogCallback = *fn(i32, *i8, *__va_elem);
 
 pub struct Rectangle {
     x: f32,
